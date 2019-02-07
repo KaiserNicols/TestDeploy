@@ -22,7 +22,7 @@ function login(){
 				
 		}
 	};
-	xhr.open("POST", "http://localhost:8080/ExpenseReimbursement/rest/employee");
+	xhr.open("POST", "http://http://ec2-34-229-80-155.compute-1.amazonaws.com:8080/Project1/ExpenseReimbursement/rest/employee");
 	xhr.setRequestHeader("Content-Type", "application/json");
 	xhr.send(jsonLoginCred);
 }
