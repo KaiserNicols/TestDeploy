@@ -1,0 +1,120 @@
+<!-- http://localhost:8080/ExpenseReimbursement/html/ManagerHome.html -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
+rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" 
+crossorigin="anonymous">
+<style>
+	body{
+		background-color: #39b5c0 ;
+	}
+	th{
+		font-size: 20;
+		color: White;
+		background-color: Red;
+		font-style: bold;
+	} 
+	tr{
+		font-size: 20;
+		color: Black;
+		font-style: bold;
+	} 
+.btn {
+  border: none;
+  outline: none;
+  padding: 10px 16px;
+  background-color: #cce0f0;
+  cursor: pointer;
+  font-size: 18px;
+  color: black;
+}
+
+/* Style the active class, and buttons on mouse-over */
+.active, .btn:hover {
+  background-color: #666;
+  color: white;
+}
+
+.mystyle {
+ 
+ background-color: black ;
+ color: #69babe
+}
+</style>
+<title>Employee Reimbursement Manager</title>
+</head>
+<body class="col-md-8 offset-md-2">
+	<div id="btn-group">
+		<button id="getAllUsersBtn"class="btn" onclick="toggleAllUsers()">View All Employees</button>
+		<button id="getAllPendingBtn" class="btn" onclick="toggleAllPending()" >View All Pending Requests </button>
+		<button id="getAllApprovedBtn"class="btn" onclick="toggleAllApproved()">View All Approved Requests</button>
+		<button id = "getSingle" onclick="toggleAllRebEmpForm()" class="btn">See Single Employee Requests</button>
+		<button  id ="decsBtn" onclick="toggleDecision()" class="btn">Approve or Deny Requests</button>
+		<button id="logout" class="btn btn-primary">Logout</button>
+	</div>
+	<div id="allUsersDIV" style="display: none">
+		<table class="table table-bordered table-striped">
+			<tbody id="employeeTable">
+				<th>ID</th>
+				<th>Username</th>
+				<th>Password</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Email</th>
+			</tbody>
+		</table>
+	</div>
+	<div id="allPendingDIV" style="display: none">
+		<table class="table table-bordered table-striped">
+			<tbody id="pendingRebTable">
+				<th>Employee ID</th>
+				<th>Reimbursement ID</th>
+				<th>Amount</th>
+				<th>Description</th>
+				<th>Status</th>
+			</tbody>
+		</table>
+	</div>
+	<div id="allApprovedDIV" style="display: none">
+		<table class="table table-bordered table-striped">
+			<tbody id="approvedRebTable">
+				<th>Employee ID</th>
+				<th>Reimbursement ID</th>
+				<th>Amount</th>
+				<th>Description</th>
+				<th>Status</th>
+				<th>Resolver ID</th>
+			</tbody>
+		</table>
+	</div>
+	<div id="allRebEmpForm" style="display: none">
+		<input type="number" id="requestedId" placeholder="Enter Employee ID">
+		<button  onclick="toggleAllRebEmp()" id="getAllRebEmpBtn"class="btn">Submit</button>
+	</div>
+	<div id="allRebEmp" style="display: none" >
+		<table class="table table-bordered table-striped">
+			<tbody id="allRebEmpTable">
+				<th>Employee ID</th>
+				<th>Reimbursement ID</th>
+				<th>Amount</th>
+				<th>Description</th>
+				<th>Status</th>
+				<th>Resolver ID</th>
+			</tbody>
+		</table>
+	</div>
+	<div id="decisionForm" style="display: none">
+		<div>
+		<input type="number" id="rebId" placeholder="Reimburement ID" min=0>
+		</div>
+		
+		<button id="approveRequest"class="btn">Approve</button>
+		<button id="denyRequest"class="btn">Deny</button>
+	</div>
+	<script type="text/javascript" src="../js/manager.js"></script>
+</body>
+</html>
+
+
