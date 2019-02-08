@@ -53,7 +53,7 @@ public class EmployeeService {
 				try {
 					EmployeeDaoImpl.getEmpDao().logout(request, response);
 					//String loginUrl = "http://localhost:8080/ExpenseReimbursement/html/Login.html";
-					String loginUrl = "https://www.google.com/";
+					String loginUrl = "https://www.google.com";
 					response.setHeader("Location", loginUrl);
 					return null;
 				} catch (IOException e) {
@@ -73,10 +73,10 @@ public class EmployeeService {
 						HttpSession session = request.getSession();
 						session.setAttribute("e_username", attempting.getE_username());
 						session.setAttribute("e_id", attempting.getE_id());
-						//String url = "http://localhost:8080/ExpenseReimbursement/html/Home.html";
-						//String managerUrl = "http://localhost:8080/ExpenseReimbursement/html/ManagerHome.html";
-						String url = "https://www.google.com/";
+						String url = "https://www.google.com";
 						String managerUrl = "https://www.google.com/";
+					//	String url = "http://localhost:8080/ExpenseReimbursement/html/Home.html";
+					//	String managerUrl = "http://localhost:8080/ExpenseReimbursement/html/ManagerHome.html";
 						if (attempting.isManager() == 1) {
 							response.setHeader("Location", managerUrl);
 							return attempting;
