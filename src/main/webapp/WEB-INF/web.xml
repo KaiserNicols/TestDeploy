@@ -4,14 +4,4 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-  <servlet>
-  	<servlet-name>TodoServlet</servlet-name>
-  	<display-name>TodoServlet</display-name>
-  	<description></description>
-  	<servlet-class>com.revature.TodoServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>TodoServlet</servlet-name>
-  	<url-pattern>/todo</url-pattern>
-  </servlet-mapping>
 </web-app>
