@@ -18,7 +18,7 @@ public class EmployeeDaoTest {
 	
 	@Test
 	public void alreadyTakenUsername() {
-		assertFalse(empEval.changeUsername("test", 4));
+		assertFalse(empEval.changeUsername("test", 1));
 	}
 	
 	

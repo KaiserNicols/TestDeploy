@@ -14,7 +14,7 @@ e_isManager INT NOT NULL
 DROP TABLE REIMBURSEMENT;
 CREATE TABLE REIMBURSEMENT (
 r_id INT PRIMARY KEY,
-r_amount NUMBER,
+r_amount NUMBER(15,2),
 r_description VARCHAR2(40),
 r_status VARCHAR2(10),
 r_resolverId INT, 
@@ -56,7 +56,7 @@ insert into REIMBURSEMENT values (null, amount, description_text, 'Pending', nul
 COMMIT;
 END;
 /
-
+exec newRequest(32, 'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff', 1);
 exec newRequest(300, 'some description', 1);
 select * from REIMBURSEMENT;
 select * from EMPLOYEE;
