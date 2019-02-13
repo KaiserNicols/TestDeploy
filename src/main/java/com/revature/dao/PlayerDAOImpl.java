@@ -9,7 +9,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
-
 import com.revature.model.Player;
 import com.revature.util.ConnectionUtil;
 
@@ -249,4 +248,42 @@ public class PlayerDAOImpl implements PlayerDAO {
 		}
 		return null;
 	}
+	
+	
+	/*
+	 *Kale: Adding attemptAuthentication() method implementation for logging in
+	 */
+	//*************************************************************************
+	//*************************************************************************
+	//*************************************************************************
+	public Player attemptAuthentication(String username, String password) {
+		Player player = null;
+		try (Connection connection = ConnectionUtil.getConnection()){
+			String sql = "Select * from PLAYER WHERE P_USERNAME = ? AND P_PASSWORD = ?";
+			try (PreparedStatement pstmt = connection.prepareStatement(sql);) {
+				pstmt.setString(1,username);
+				pstmt.setString(2, hashPassword(username, password));
+				ResultSet rs = pstmt.executeQuery();
+				if(rs.next()) {
+					player = new Player(
+						rs.getInt("P_ID"),
+						rs.getString("P_USERNAME"), 
+						rs.getString("P_PASSWORD"),
+						rs.getString("P_EMAIL"),
+						rs.getString("P_FIRSTNAME"), 
+						rs.getString("P_LASTNAME")
+						);
+				}	
+			} 
+		}
+		catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
+		return player;
+	}
+	//*************************************************************************
+	//*************************************************************************
+	//*************************************************************************
+	
+	
 }

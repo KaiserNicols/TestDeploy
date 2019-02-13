@@ -8,6 +8,13 @@ public class Player {
 	private String firstName;
 	private String lastName;
 	
+	/*
+	 * Kale: Added a default constructor for Player
+	 */
+	public Player() {
+		
+	}
+	
 	public Player(int id, String username, String password, String email, String firstName, String lastName) {
 		super();
 		this.id = id;
