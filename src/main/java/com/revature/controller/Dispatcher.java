@@ -5,9 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Dispatcher {
 	
-	private Dispatcher() {
-			
-		}
+	private Dispatcher() {}
 
 	public static Object process(HttpServletRequest request, HttpServletResponse response) {
 /*
