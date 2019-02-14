@@ -114,7 +114,7 @@ public User getUser(int userId) {
 	public User getUser(String username) {
 		User user = new User();
 		Connection connection = null;
-		connection = cu.getConnection();
+		connection = ConnectionUtil.getConnection();
 		String sql = "SELECT * FROM IMDB_USER WHERE U_USERNAME = ?";
 		try  {
 			PreparedStatement ps = connection.prepareStatement(sql);
@@ -265,7 +265,7 @@ public User getUser(int userId) {
 	public User attemptAuthentication(String username, String password) {
 		User user = null;
 		Connection connection = null;
-		connection = cu.getConnection();
+		connection = ConnectionUtil.getConnection();
 		
 		System.out.println("username: " + username);
 		
