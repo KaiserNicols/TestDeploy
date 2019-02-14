@@ -2,18 +2,18 @@ package com.revature.dao;
 
 import java.util.ArrayList;
 
-import com.revature.model.Player;
+import com.revature.model.User;
 
-public interface PlayerDAO {
+public interface UserDAO {
 	// DML
-	public Player insertPlayer(Player player);
-	public Player updatePlayer(Player player);
-	public Player deletePlayer(Player player);
+	public User insertUser(User user);
+	public User updateUser(User user);
+	public User deleteUser(User user);
 	
 	// DQL
-	public Player getPlayer(int playerId);
-	public Player getPlayer(String username);
-	public ArrayList<Player> getAllPlayers();
+	public User getUser(int userId);
+	public User getUser(String username);
+	public ArrayList<User> getAllUsers();
 	
 	// DML
 	public boolean insertCredentials(String username, String password);
@@ -27,6 +27,6 @@ public interface PlayerDAO {
 	public String hashPassword(String username, String password);
 	
 	//Kale: Adding the attemptAuthentication() method
-	public Player attemptAuthentication(String username, String password);
+	public User attemptAuthentication(String username, String password);
 
 }
