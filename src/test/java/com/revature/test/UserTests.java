@@ -48,10 +48,13 @@ public class UserTests {
 		test.setPassword(dao.hashPassword(test.getUsername(), test.getPassword()));
 		assertTrue(test.equals(returned));
 	}
-	@Test
+	/*
+	 * @Test
 	public void testGetPlayerById() {
 		assertTrue(test.equals(dao.getUser(test.getId())));
 	}
+	 */
+	
 	@Test
 	public void testGetPlayerByUsername() {
 		assertTrue(test.equals(dao.getUser(test.getUsername())));

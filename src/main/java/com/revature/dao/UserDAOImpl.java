@@ -84,9 +84,8 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return null;
 	}
-	
-	// DQL
-	public User getUser(int userId) {
+	/*
+public User getUser(int userId) {
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			String sql = "SELECT * FROM IMDB_USER WHERE U_ID = ?";
 			try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -109,6 +108,9 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return null;
 	}
+	 */
+	// DQL
+	
 	public User getUser(String username) {
 		User user = new User();
 		Connection connection = null;
