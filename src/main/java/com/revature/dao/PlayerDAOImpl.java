@@ -267,7 +267,7 @@ public class PlayerDAOImpl implements PlayerDAO {
 		
 		System.out.println("username: " + username);
 		
-			String sql = "Select * from PLAYER WHERE P_USERNAME = ? AND P_PASSWORD = ?";
+			String sql = "Select * from USER WHERE U_USERNAME = ? AND U_PASSWORD = ?";
 			try {
 				PreparedStatement pstmt = connection.prepareStatement(sql);
 				pstmt.setString(1,username);
@@ -275,15 +275,14 @@ public class PlayerDAOImpl implements PlayerDAO {
 				ResultSet rs = pstmt.executeQuery();
 				if(rs.next()) {
 					player = new Player(
-						rs.getInt("P_ID"),
-						rs.getString("P_USERNAME"), 
-						rs.getString("P_PASSWORD"),
-						rs.getString("P_EMAIL"),
-						rs.getString("P_FIRSTNAME"), 
-						rs.getString("P_LASTNAME")
+						rs.getInt("U_ID"),
+						rs.getString("U_USERNAME"), 
+						rs.getString("U_PASSWORD"),
+						rs.getString("U_EMAIL"),
+						rs.getString("U_FIRSTNAME"), 
+						rs.getString("U_LASTNAME")
 						);
 				}	
-				System.out.println("Here?");
 				System.out.println(player);
 			} 
 		
