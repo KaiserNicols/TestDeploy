@@ -14,11 +14,11 @@ export class LoginComponent implements OnInit {
   constructor(private LoginService: LoginService){}
 
   ngOnInit() {
-    this.LoginService.getUser().subscribe(
-      //success
-      data => this.user = data,
-      //failure
-      err => console.log(`Error: ${err}`))
+  //   this.LoginService.getUser().subscribe(
+  //     //success
+  //     data => this.user = data,
+  //     //failure
+  //     err => console.log(`Error: ${err}`))
   }
 
 }
