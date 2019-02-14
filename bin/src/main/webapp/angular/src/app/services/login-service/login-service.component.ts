@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
 export class LoginService {
   constructor(private http: HttpClient) { }
 
-  getUser(): Observable<User>{
-    return this.http.get<User>("--insert URL to GET user from servlet--");
-  }
+  // getUser(): Observable<User>{
+  //   return this.http.get<User>("--insert URL to GET user from servlet--");
+  // }
 }
 
 export interface User{
