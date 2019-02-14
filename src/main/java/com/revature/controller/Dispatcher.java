@@ -22,7 +22,7 @@ public class Dispatcher {
 			return "Not yet implemented";
  */
 		
-		if (request.getRequestURI().contains("player")) {
+		if (request.getRequestURI().contains("user")) {
 			return userService.process(request, response);
 		}
 		return null;
