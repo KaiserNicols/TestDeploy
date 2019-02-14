@@ -15,6 +15,7 @@ import com.revature.util.ConnectionUtil;
 public class PlayerDAOImpl implements PlayerDAO {
 	
 	private static Logger logger = Logger.getLogger(PlayerDAOImpl.class);
+	private static ConnectionUtil cu = ConnectionUtil.getInstance();
 	
 	// Singleton setup
 	private static PlayerDAOImpl instance;
@@ -109,13 +110,16 @@ public class PlayerDAOImpl implements PlayerDAO {
 		return null;
 	}
 	public Player getPlayer(String username) {
-		try (Connection connection = ConnectionUtil.getConnection()) {
-			String sql = "SELECT * FROM PLAYER WHERE P_USERNAME = ?";
-			try (PreparedStatement ps = connection.prepareStatement(sql)) {
+		Player player = new Player();
+		Connection connection = null;
+		connection = cu.getConnection();
+		String sql = "SELECT * FROM PLAYER WHERE P_USERNAME = ?";
+		try  {
+			PreparedStatement ps = connection.prepareStatement(sql);
 				ps.setString(1, username);
-				try (ResultSet rs = ps.executeQuery()) {
+				ResultSet rs = ps.executeQuery();
 					if (rs.next()) {
-						return new Player(
+						player = new Player(
 								rs.getInt("P_ID"),
 								rs.getString("P_USERNAME"), 
 								rs.getString("P_PASSWORD"),
@@ -123,13 +127,13 @@ public class PlayerDAOImpl implements PlayerDAO {
 								rs.getString("P_FIRSTNAME"), 
 								rs.getString("P_LASTNAME")
 								);
-					}	
-				}	
-			}
+				}
+					System.out.println(username);
+					System.out.println(player);
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
-		return null;
+		return player;
 	}
 	public ArrayList<Player> getAllPlayers() {
 		try (Connection connection = ConnectionUtil.getConnection()) {
@@ -258,11 +262,16 @@ public class PlayerDAOImpl implements PlayerDAO {
 	//*************************************************************************
 	public Player attemptAuthentication(String username, String password) {
 		Player player = null;
-		try (Connection connection = ConnectionUtil.getConnection()){
+		Connection connection = null;
+		connection = cu.getConnection();
+		
+		System.out.println("username: " + username);
+		
 			String sql = "Select * from PLAYER WHERE P_USERNAME = ? AND P_PASSWORD = ?";
-			try (PreparedStatement pstmt = connection.prepareStatement(sql);) {
+			try {
+				PreparedStatement pstmt = connection.prepareStatement(sql);
 				pstmt.setString(1,username);
-				pstmt.setString(2, hashPassword(username, password));
+				pstmt.setString(2, password);
 				ResultSet rs = pstmt.executeQuery();
 				if(rs.next()) {
 					player = new Player(
@@ -274,8 +283,10 @@ public class PlayerDAOImpl implements PlayerDAO {
 						rs.getString("P_LASTNAME")
 						);
 				}	
+				System.out.println("Here?");
+				System.out.println(player);
 			} 
-		}
+		
 		catch(SQLException e) {
 			logger.error(e.getMessage());
 		}

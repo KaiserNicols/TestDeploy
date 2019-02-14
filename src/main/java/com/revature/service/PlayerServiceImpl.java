@@ -19,14 +19,15 @@ public class PlayerServiceImpl implements PlayerService {
 
 	@Override
 	public Object process(HttpServletRequest request, HttpServletResponse response) {
-		
+		if (request.getMethod().equals("GET")) {
+			return getPlayer("admin");
+		}
 		if (request.getMethod().equals("POST")){
 			try {
 				Player logPlayer = null;
 				logPlayer = mapper.readValue(request.getReader(), Player.class);
 				final String username = logPlayer.getUsername();
 				final String password = logPlayer.getPassword();
-				
 				Player attempting = attemptAuthentication(username, password);
 				if (attempting != null) {
 					HttpSession session = request.getSession();
@@ -54,6 +55,9 @@ public class PlayerServiceImpl implements PlayerService {
 	
 	public Player attemptAuthentication(String username, String password) {
 		return PlayerDAOImpl.getPlayerDAO().attemptAuthentication(username, password);
+	}
+	public Player getPlayer(String username) {
+		return PlayerDAOImpl.getPlayerDAO().getPlayer(username);
 	}
 	
 

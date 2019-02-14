@@ -16,8 +16,8 @@ public class PlayerTests {
 
 	private static Player test = new Player(-1, "JUnitTest", "JUnitTest", "JUnitTest@gmail.com", "firstName", "lastName");
 	private static PlayerDAO dao = PlayerDAOImpl.getPlayerDAO();
-	
-	@BeforeClass
+	/*
+	 * @BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		ConnectionUtil.defaultCredentials();
 		dao.insertCredentials(test.getUsername(), test.getPassword());
@@ -25,6 +25,8 @@ public class PlayerTests {
 		test = dao.insertPlayer(test);
 		assertNotNull(test);
 	}
+	 */
+	
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {

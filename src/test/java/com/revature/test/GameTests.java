@@ -17,13 +17,15 @@ public class GameTests {
 
 	private static Game test = new Game(-1, "JUnitTest", GameType.OTHER);
 	private static GameDAO dao = GameDAOImpl.getGameDAO();
-	
-	@BeforeClass
+	/*
+	 * @BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		ConnectionUtil.defaultCredentials();
 		test = dao.insertGame(test);
 		assertNotNull(test);
 	}
+	 */
+	
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {

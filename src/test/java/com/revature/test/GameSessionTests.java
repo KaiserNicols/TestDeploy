@@ -30,8 +30,8 @@ public class GameSessionTests {
 	private static PlayerDAO playerdao = PlayerDAOImpl.getPlayerDAO();
 	private static GameDAO gamedao = GameDAOImpl.getGameDAO();
 	private static GameSessionDAO sessiondao = GameSessionDAOImpl.getGameSessionDAO();
-	
-	@BeforeClass
+	/*
+	 * @BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		ConnectionUtil.defaultCredentials();
 		playerTest = playerdao.insertPlayer(playerTest);
@@ -41,6 +41,8 @@ public class GameSessionTests {
 		sessionTest = sessiondao.insertGameSession(sessionTest);
 		assertNotNull(sessionTest);
 	}
+	 */
+	
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
