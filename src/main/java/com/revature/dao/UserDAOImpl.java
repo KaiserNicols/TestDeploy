@@ -9,75 +9,75 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
-import com.revature.model.Player;
+import com.revature.model.User;
 import com.revature.util.ConnectionUtil;
 
-public class PlayerDAOImpl implements PlayerDAO {
+public class UserDAOImpl implements UserDAO {
 	
-	private static Logger logger = Logger.getLogger(PlayerDAOImpl.class);
+	private static Logger logger = Logger.getLogger(UserDAOImpl.class);
 	private static ConnectionUtil cu = ConnectionUtil.getInstance();
 	
 	// Singleton setup
-	private static PlayerDAOImpl instance;
-	private PlayerDAOImpl() {}
-	public static PlayerDAOImpl getPlayerDAO() {
+	private static UserDAOImpl instance;
+	private UserDAOImpl() {}
+	public static UserDAOImpl getUserDAO() {
 		if (instance == null) {
-			instance = new PlayerDAOImpl();
+			instance = new UserDAOImpl();
 		}
 		return instance;
 	}
 	
 	// DML
-	public Player insertPlayer(Player player) {
+	public User insertUser(User user) {
 		try (Connection connection = ConnectionUtil.getConnection()) {
-			String sql = "INSERT INTO PLAYER values(NULL,?,?,?,?,?)";
+			String sql = "INSERT INTO IMDB_USER values(NULL,?,?,?,?,?)";
 			try (PreparedStatement ps = connection.prepareStatement(sql)) {
-				ps.setString(1, player.getUsername());
-				ps.setString(2, hashPassword(player.getUsername(), player.getPassword()));
-				ps.setString(3, player.getEmail());
-				ps.setString(4, player.getFirstName());
-				ps.setString(5, player.getLastName());
+				ps.setString(1, user.getUsername());
+				ps.setString(2, hashPassword(user.getUsername(), user.getPassword()));
+				ps.setString(3, user.getEmail());
+				ps.setString(4, user.getFirstName());
+				ps.setString(5, user.getLastName());
 				if (ps.executeUpdate() != 1) {
 					throw new SQLException();
 				}
-				return getPlayer(player.getUsername());	// to return the triggered id
+				return getUser(user.getUsername());	// to return the triggered id
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
 		return null;
 	}
-	public Player updatePlayer(Player player) {
+	public User updateUser(User user) {
 		try (Connection connection = ConnectionUtil.getConnection()) {
-			String sql = "UPDATE PLAYER SET "
-					+ "P_USERNAME = ?, P_PASSWORD = ?, P_EMAIL = ?, "
-					+ "P_FIRSTNAME = ?, P_LASTNAME = ? WHERE P_ID = ?";
+			String sql = "UPDATE IMDB_USER SET "
+					+ "U_USERNAME = ?, U_PASSWORD = ?, U_EMAIL = ?, "
+					+ "U_FIRSTNAME = ?, U_LASTNAME = ? WHERE U_ID = ?";
 			try (PreparedStatement ps = connection.prepareStatement(sql)) {
-				ps.setString(1, player.getUsername());
-				ps.setString(2, hashPassword(player.getUsername(), player.getPassword()));
-				ps.setString(3, player.getEmail());
-				ps.setString(4, player.getFirstName());
-				ps.setString(5, player.getLastName());
-				ps.setInt(6, player.getId());
+				ps.setString(1, user.getUsername());
+				ps.setString(2, hashPassword(user.getUsername(), user.getPassword()));
+				ps.setString(3, user.getEmail());
+				ps.setString(4, user.getFirstName());
+				ps.setString(5, user.getLastName());
+				ps.setInt(6, user.getId());
 				if (ps.executeUpdate() != 1) {
 					throw new SQLException();
 				}
-				return getPlayer(player.getUsername());	
+				return getUser(user.getUsername());	
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
 		return null;
 	}
-	public Player deletePlayer(Player player) {
+	public User deleteUser(User user) {
 		try (Connection connection = ConnectionUtil.getConnection()) {
-			String sql = "DELETE FROM PLAYER WHERE P_ID = ?";
+			String sql = "DELETE FROM IMDB_USER WHERE U_ID = ?";
 			try (PreparedStatement ps = connection.prepareStatement(sql)) {
-				ps.setInt(1, player.getId());
+				ps.setInt(1, user.getId());
 				if (ps.executeUpdate() != 1) {
 					throw new SQLException();
 				}
-				return player;
+				return user;
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
@@ -86,20 +86,20 @@ public class PlayerDAOImpl implements PlayerDAO {
 	}
 	
 	// DQL
-	public Player getPlayer(int playerId) {
+	public User getUser(int userId) {
 		try (Connection connection = ConnectionUtil.getConnection()) {
-			String sql = "SELECT * FROM PLAYER WHERE P_ID = ?";
+			String sql = "SELECT * FROM IMDB_USER WHERE U_ID = ?";
 			try (PreparedStatement ps = connection.prepareStatement(sql)) {
-				ps.setInt(1, playerId);
+				ps.setInt(1, userId);
 				try (ResultSet rs = ps.executeQuery()) {
 					if (rs.next()) {
-						return new Player(
-								rs.getInt("P_ID"),
-								rs.getString("P_USERNAME"), 
-								rs.getString("P_PASSWORD"),
-								rs.getString("P_EMAIL"),
-								rs.getString("P_FIRSTNAME"), 
-								rs.getString("P_LASTNAME")
+						return new User(
+								rs.getInt("U_ID"),
+								rs.getString("U_USERNAME"), 
+								rs.getString("U_PASSWORD"),
+								rs.getString("U_EMAIL"),
+								rs.getString("U_FIRSTNAME"), 
+								rs.getString("U_LASTNAME")
 								);
 					}	
 				}	
@@ -109,49 +109,49 @@ public class PlayerDAOImpl implements PlayerDAO {
 		}
 		return null;
 	}
-	public Player getPlayer(String username) {
-		Player player = new Player();
+	public User getUser(String username) {
+		User user = new User();
 		Connection connection = null;
 		connection = cu.getConnection();
-		String sql = "SELECT * FROM PLAYER WHERE P_USERNAME = ?";
+		String sql = "SELECT * FROM IMDB_USER WHERE U_USERNAME = ?";
 		try  {
 			PreparedStatement ps = connection.prepareStatement(sql);
 				ps.setString(1, username);
 				ResultSet rs = ps.executeQuery();
 					if (rs.next()) {
-						player = new Player(
-								rs.getInt("P_ID"),
-								rs.getString("P_USERNAME"), 
-								rs.getString("P_PASSWORD"),
-								rs.getString("P_EMAIL"),
-								rs.getString("P_FIRSTNAME"), 
-								rs.getString("P_LASTNAME")
+						user = new User(
+								rs.getInt("U_ID"),
+								rs.getString("U_USERNAME"), 
+								rs.getString("U_PASSWORD"),
+								rs.getString("U_EMAIL"),
+								rs.getString("U_FIRSTNAME"), 
+								rs.getString("U_LASTNAME")
 								);
 				}
 					System.out.println(username);
-					System.out.println(player);
+					System.out.println(user);
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
-		return player;
+		return user;
 	}
-	public ArrayList<Player> getAllPlayers() {
+	public ArrayList<User> getAllUsers() {
 		try (Connection connection = ConnectionUtil.getConnection()) {
-			String sql = "SELECT * FROM PLAYER";
+			String sql = "SELECT * FROM IMDB_USER";
 			try (PreparedStatement ps = connection.prepareStatement(sql)) {
 				try (ResultSet rs = ps.executeQuery()) {
-					ArrayList<Player> players = new ArrayList<Player>();
+					ArrayList<User> users = new ArrayList<User>();
 					while (rs.next()) {
-						players.add(new Player(
-								rs.getInt("P_ID"),
-								rs.getString("P_USERNAME"), 
-								rs.getString("P_PASSWORD"),
-								rs.getString("P_EMAIL"),
-								rs.getString("P_FIRSTNAME"), 
-								rs.getString("P_LASTNAME")
+						users.add(new User(
+								rs.getInt("U_ID"),
+								rs.getString("U_USERNAME"), 
+								rs.getString("U_PASSWORD"),
+								rs.getString("U_EMAIL"),
+								rs.getString("U_FIRSTNAME"), 
+								rs.getString("U_LASTNAME")
 								));
 					}
-					return players;
+					return users;
 				}
 			}
 		} catch (SQLException e) {
@@ -238,7 +238,7 @@ public class PlayerDAOImpl implements PlayerDAO {
 	
 	public String hashPassword(String username, String password) {
 		try (Connection connection = ConnectionUtil.getConnection()) {
-			String sql = "SELECT GET_PLAYER_HASH(?, ?) FROM dual";
+			String sql = "SELECT GET_USER_HASH(?, ?) FROM dual";
 			try (CallableStatement cs = connection.prepareCall(sql)) {
 				cs.setString(1, username);
 				cs.setString(2, password);
@@ -260,21 +260,21 @@ public class PlayerDAOImpl implements PlayerDAO {
 	//*************************************************************************
 	//*************************************************************************
 	//*************************************************************************
-	public Player attemptAuthentication(String username, String password) {
-		Player player = null;
+	public User attemptAuthentication(String username, String password) {
+		User user = null;
 		Connection connection = null;
 		connection = cu.getConnection();
 		
 		System.out.println("username: " + username);
 		
-			String sql = "Select * from USER WHERE U_USERNAME = ? AND U_PASSWORD = ?";
+			String sql = "SELECT * FROM IMDB_USER WHERE U_USERNAME = ? AND U_PASSWORD = ?";
 			try {
 				PreparedStatement pstmt = connection.prepareStatement(sql);
 				pstmt.setString(1,username);
 				pstmt.setString(2, password);
 				ResultSet rs = pstmt.executeQuery();
 				if(rs.next()) {
-					player = new Player(
+					user = new User(
 						rs.getInt("U_ID"),
 						rs.getString("U_USERNAME"), 
 						rs.getString("U_PASSWORD"),
@@ -283,13 +283,15 @@ public class PlayerDAOImpl implements PlayerDAO {
 						rs.getString("U_LASTNAME")
 						);
 				}	
-				System.out.println(player);
+				System.out.println(user);
+				System.out.println("Here?");
+				System.out.println(user);
 			} 
 		
 		catch(SQLException e) {
 			logger.error(e.getMessage());
 		}
-		return player;
+		return user;
 	}
 	//*************************************************************************
 	//*************************************************************************

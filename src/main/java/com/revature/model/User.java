@@ -1,6 +1,6 @@
 package com.revature.model;
 
-public class Player {
+public class User {
 	private int id;
 	private String username;
 	private String password;
@@ -8,14 +8,9 @@ public class Player {
 	private String firstName;
 	private String lastName;
 	
-	/*
-	 * Kale: Added a default constructor for Player
-	 */
-	public Player() {
-		
-	}
+	public User() {}
 	
-	public Player(int id, String username, String password, String email, String firstName, String lastName) {
+	public User(int id, String username, String password, String email, String firstName, String lastName) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -94,7 +89,7 @@ public class Player {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Player other = (Player) obj;
+		User other = (User) obj;
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -127,7 +122,7 @@ public class Player {
 
 	@Override
 	public String toString() {
-		return "Player [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
 				+ ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 }
