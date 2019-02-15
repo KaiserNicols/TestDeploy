@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.dao.EmployeeDaoImpl;
 import com.revature.dao.UserDAOImpl;
 import com.revature.model.User;
 
