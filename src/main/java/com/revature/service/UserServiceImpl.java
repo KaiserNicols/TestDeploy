@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.dao.EmployeeDaoImpl;
 import com.revature.dao.UserDAOImpl;
 import com.revature.model.User;
 
@@ -22,7 +23,20 @@ public class UserServiceImpl implements UserService {
 		if (request.getMethod().equals("GET")) {
 			return getPlayer("admin");
 		}
+		
 		if (request.getMethod().equals("POST")){
+			if (request.getRequestURI().contains("logout")) {
+				try {
+					UserDAOImpl.getUserDAO().logout(request, response);
+					//String loginUrl = "http://localhost:8080/ExpenseReimbursement/html/Login.html";
+					//response.setHeader("Location", loginUrl);
+					response.sendRedirect("https://www.google.com/");
+					return null;
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			try {
 				User logPlayer = null;
 				logPlayer = mapper.readValue(request.getReader(), User.class);

@@ -1,5 +1,6 @@
 package com.revature.dao;
 
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import com.revature.model.User;
@@ -294,6 +298,11 @@ public User getUser(int userId) {
 			logger.error(e.getMessage());
 		}
 		return user;
+	}
+	
+	public void logout(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		req.getSession().invalidate();
+
 	}
 	//*************************************************************************
 	//*************************************************************************
