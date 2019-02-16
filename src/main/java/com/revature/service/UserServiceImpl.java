@@ -20,7 +20,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Object process(HttpServletRequest request, HttpServletResponse response) {
 		if (request.getMethod().equals("GET")) {
-			return getPlayer("admin");
+			HttpSession session = request.getSession();
+			String username = (String) session.getAttribute("username");
+			return getPlayer(username);
 		}
 		
 		if (request.getMethod().equals("POST")){
