@@ -268,6 +268,32 @@ public User getUser(int userId) {
 	//*************************************************************************
 	public User attemptAuthentication(String username, String password) {
 		User user = null;
+		try (Connection connection = ConnectionUtil.getConnection()) {
+			
+			String sql = "SELECT * FROM IMDB_USER WHERE U_USERNAME = ? AND U_PASSWORD = ?";
+			try(PreparedStatement pstmt = connection.prepareStatement(sql)){
+				pstmt.setString(1,username);
+				pstmt.setString(2, hashPassword(username, password));
+				ResultSet rs = pstmt.executeQuery();
+				if(rs.next()) {
+					user = new User(
+						rs.getInt("U_ID"),
+						rs.getString("U_USERNAME"), 
+						rs.getString("U_PASSWORD"),
+						rs.getString("U_EMAIL"),
+						rs.getString("U_FIRSTNAME"), 
+						rs.getString("U_LASTNAME")
+						);
+				}	
+			}
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
+		return user;
+	}
+	/*
+	 public User attemptAuthentication(String username, String password) {
+		User user = null;
 		Connection connection = null;
 		connection = ConnectionUtil.getConnection();
 		
@@ -299,6 +325,8 @@ public User getUser(int userId) {
 		}
 		return user;
 	}
+	
+	 */
 	
 	public void logout(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		req.getSession().invalidate();
