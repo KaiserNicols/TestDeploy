@@ -88,8 +88,9 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return null;
 	}
-	/*
-public User getUser(int userId) {
+	
+	//DQL
+	public User getUser(int userId) {
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			String sql = "SELECT * FROM IMDB_USER WHERE U_ID = ?";
 			try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -97,23 +98,22 @@ public User getUser(int userId) {
 				try (ResultSet rs = ps.executeQuery()) {
 					if (rs.next()) {
 						return new User(
-								rs.getInt("U_ID"),
-								rs.getString("U_USERNAME"), 
-								rs.getString("U_PASSWORD"),
-								rs.getString("U_EMAIL"),
-								rs.getString("U_FIRSTNAME"), 
-								rs.getString("U_LASTNAME")
-								);
+							rs.getInt("U_ID"),
+							rs.getString("U_USERNAME"), 
+							rs.getString("U_PASSWORD"),
+							rs.getString("U_EMAIL"),
+							rs.getString("U_FIRSTNAME"), 
+							rs.getString("U_LASTNAME")
+							);
 					}	
 				}	
 			}
-		} catch (SQLException e) {
+		}catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
 		return null;
 	}
-	 */
-	// DQL
+	 
 	public User getUser(String username) {
 		User user = new User();
 		try (Connection connection = ConnectionUtil.getConnection()) {
@@ -138,35 +138,8 @@ public User getUser(int userId) {
 		return user;
 	}
 	/*
-	 public User getUser(String username) {
-		User user = new User();
-		Connection connection = null;
-		connection = ConnectionUtil.getConnection();
-		String sql = "SELECT * FROM IMDB_USER WHERE U_USERNAME = ?";
-		try  {
-			PreparedStatement ps = connection.prepareStatement(sql);
-				ps.setString(1, username);
-				ResultSet rs = ps.executeQuery();
-					if (rs.next()) {
-						user = new User(
-								rs.getInt("U_ID"),
-								rs.getString("U_USERNAME"), 
-								rs.getString("U_PASSWORD"),
-								rs.getString("U_EMAIL"),
-								rs.getString("U_FIRSTNAME"), 
-								rs.getString("U_LASTNAME")
-								);
-				}
-					System.out.println(username);
-					System.out.println(user);
-		} catch (SQLException e) {
-			logger.error(e.getMessage());
-		}
-		return user;
-	}
+	http://54.145.242.129:8080/Project2/rest/user/all
 	 */
-	
-	
 	public ArrayList<User> getAllUsers() {
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			String sql = "SELECT * FROM IMDB_USER";
@@ -175,13 +148,13 @@ public User getUser(int userId) {
 					ArrayList<User> users = new ArrayList<User>();
 					while (rs.next()) {
 						users.add(new User(
-								rs.getInt("U_ID"),
-								rs.getString("U_USERNAME"), 
-								rs.getString("U_PASSWORD"),
-								rs.getString("U_EMAIL"),
-								rs.getString("U_FIRSTNAME"), 
-								rs.getString("U_LASTNAME")
-								));
+							rs.getInt("U_ID"),
+							rs.getString("U_USERNAME"), 
+							rs.getString("U_PASSWORD"),
+							rs.getString("U_EMAIL"),
+							rs.getString("U_FIRSTNAME"), 
+							rs.getString("U_LASTNAME")
+							));
 					}
 					return users;
 				}

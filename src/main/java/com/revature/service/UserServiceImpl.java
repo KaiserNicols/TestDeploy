@@ -1,10 +1,13 @@
 package com.revature.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -14,15 +17,24 @@ import com.revature.model.User;
 
 public class UserServiceImpl implements UserService {
 	
-	private static UserService userService;
+	private static Logger logger = Logger.getLogger(UserDAOImpl.class);
 	private final ObjectMapper mapper = new ObjectMapper();
 
 	@Override
 	public Object process(HttpServletRequest request, HttpServletResponse response) {
 		if (request.getMethod().equals("GET")) {
-			HttpSession session = request.getSession();
-			String username = (String) session.getAttribute("username");
-			return getPlayer(username);
+			if (request.getRequestURI().contains("all")) {
+				return getAllUsers();
+			}
+			try {
+				HttpSession session = request.getSession();
+				int id = (int) session.getAttribute("id");
+				return getUser(id);
+			}catch(NullPointerException e) {
+				logger.error(e.getMessage());
+				e.printStackTrace();
+			}
+			
 		}
 		
 		if (request.getMethod().equals("POST")){
@@ -34,7 +46,6 @@ public class UserServiceImpl implements UserService {
 					response.sendRedirect("https://www.google.com/");
 					return null;
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -64,16 +75,20 @@ public class UserServiceImpl implements UserService {
 			}
 		return null; // TODO: Remove this later
 		}
-		
-		
 		return null;
 	}
 	
 	public User attemptAuthentication(String username, String password) {
 		return UserDAOImpl.getUserDAO().attemptAuthentication(username, password);
 	}
-	public User getPlayer(String username) {
+	public User getUser(String username) {
 		return UserDAOImpl.getUserDAO().getUser(username);
+	}
+	public User getUser(int id) {
+		return UserDAOImpl.getUserDAO().getUser(id);
+	}
+	public ArrayList<User> getAllUsers() {
+		return UserDAOImpl.getUserDAO().getAllUsers();
 	}
 	
 
