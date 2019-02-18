@@ -22,7 +22,8 @@ public class CorsFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;	
-		
+
+
 		// In order for us to accept requests from other domains, we need to add two request headers
 		// First being, 'Access-Control-Allow-Origin' with the value being the domain you are requesting from
 		//httpResponse.addHeader("Access-Control-Allow-Origin", "http://localhost:4200");
