@@ -27,7 +27,7 @@ export class UserService {
   //private userObservable: Observable<any>;
 
   loginUser(userAttempt: UserAttempt): Observable<UserAttempt> {
-    return this.http.post<User>(this.baseUrl + "user2", userAttempt);
+    return this.http.post<User>(this.baseUrl + "user", userAttempt);
   }
 
   // getUser(){
