@@ -28,7 +28,7 @@ public class CorsFilter implements Filter {
 		// First being, 'Access-Control-Allow-Origin' with the value being the domain you are requesting from
 		//httpResponse.addHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		httpResponse.addHeader("Access-Control-Allow-Origin", "*");
-		
+		httpResponse.addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		// The second being, 'Access-Control-Allow-Methods' with the HTTP Methods you grant access to
 		httpResponse.addHeader("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
 		
