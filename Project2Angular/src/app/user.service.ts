@@ -22,7 +22,7 @@ export class UserService {
   private baseUrl: string = 'http://54.145.242.129:8080/Project2/rest/'
 
   loginUser(userAttempt: User): Observable<User> {
-    return this.http.post<User>(this.baseUrl + "user", userAttempt, httpOptions);
+    return this.http.post<User>(this.baseUrl + "user", userAttempt);
   }
 }
 
