@@ -11,7 +11,7 @@ public interface UserDAO {
 	public User deleteUser(User user);
 	
 	// DQL
-	//public User getUser(int userId);
+	public User getUser(int userId);
 	public User getUser(String username);
 	public ArrayList<User> getAllUsers();
 	

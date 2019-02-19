@@ -48,13 +48,10 @@ public class UserTests {
 		test.setPassword(dao.hashPassword(test.getUsername(), test.getPassword()));
 		assertTrue(test.equals(returned));
 	}
-	/*
-	 * @Test
+	@Test
 	public void testGetPlayerById() {
 		assertTrue(test.equals(dao.getUser(test.getId())));
 	}
-	 */
-	
 	@Test
 	public void testGetPlayerByUsername() {
 		assertTrue(test.equals(dao.getUser(test.getUsername())));
@@ -63,10 +60,10 @@ public class UserTests {
 	public void testGetAllPlayers() {
 		assertNotNull(dao.getAllUsers());
 	}
-	@Test
-	public void testUpdateCredentials() {
-		assertTrue(dao.updateCredentials(test.getUsername(), "newCredentialPassword"));
-	}
+//	@Test
+//	public void testUpdateCredentials() {
+//		assertTrue(dao.updateCredentials(test.getUsername(), "newCredentialPassword"));
+//	}
 	@Test
 	public void testHashPassword() {
 		assertNotNull(dao.hashPassword(test.getUsername(), test.getPassword()));

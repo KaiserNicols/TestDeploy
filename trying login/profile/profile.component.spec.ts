@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfileComponent } from './profile.component';
@@ -23,3 +24,30 @@ describe('ProfileComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+=======
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { ProfileComponent } from './profile.component';
+
+describe('ProfileComponent', () => {
+  let component: ProfileComponent;
+  let fixture: ComponentFixture<ProfileComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ ProfileComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ProfileComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+>>>>>>> 376ebaa769da514437fdbd9b194ccee239788514
