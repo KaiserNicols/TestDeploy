@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {User, UserAttempt, UserService} from '../user.service';
+import {User, UserService} from '../user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,38 +9,7 @@ import {User, UserAttempt, UserService} from '../user.service';
 })
 export class NavbarComponent implements OnInit {
 
-  user: User = {
-    id: null,
-    email: null,
-    username: null,
-    password: null,
-    firstname: null,
-    lastname: null
-  };
-
-  userAttempt: UserAttempt = {
-    username: null,
-    password: null
-  };
-
-
-
-  login(): User {
-    this.userService.loginUser(this.userAttempt).subscribe(
-      response => {
-        console.log(this.userAttempt);
-        // @ts-ignore
-        this.user = response;
-        console.log(response);
-
-        console.log(this.user)
-      },
-      (err: any) => console.log(`Error: $(err)`)
-    );
-    return this.user;
-  }
-
-  constructor(private userService: UserService) { }
+  constructor() { }
 
   ngOnInit() {
   }

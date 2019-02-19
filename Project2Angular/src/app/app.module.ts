@@ -11,7 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
-import { UserService } from './user.service';
+import { UserService, User } from './user.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { UserService } from './user.service';
     FormsModule,
     ReactiveFormsModule
     ],
-  providers: [ UserService ],
+  providers: [ UserService, User ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
