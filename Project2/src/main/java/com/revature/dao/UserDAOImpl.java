@@ -13,24 +13,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+
 import com.revature.model.User;
 import com.revature.util.ConnectionUtil;
 
 public class UserDAOImpl implements UserDAO {
-	
+
 	private static Logger logger = Logger.getLogger(UserDAOImpl.class);
 	private static ConnectionUtil cu = ConnectionUtil.getInstance();
-	
+
 	// Singleton setup
 	private static UserDAOImpl instance;
-	private UserDAOImpl() {}
+
+	private UserDAOImpl() {
+	}
+
 	public static UserDAOImpl getUserDAO() {
 		if (instance == null) {
 			instance = new UserDAOImpl();
 		}
 		return instance;
 	}
-	
+
 	// DML
 	public User insertUser(User user) {
 		try (Connection connection = ConnectionUtil.getConnection()) {
@@ -44,17 +48,17 @@ public class UserDAOImpl implements UserDAO {
 				if (ps.executeUpdate() != 1) {
 					throw new SQLException();
 				}
-				return getUser(user.getUsername());	// to return the triggered id
+				return getUser(user.getUsername()); // to return the triggered id
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
 		return null;
 	}
+
 	public User updateUser(User user) {
 		try (Connection connection = ConnectionUtil.getConnection()) {
-			String sql = "UPDATE IMDB_USER SET "
-					+ "U_USERNAME = ?, U_PASSWORD = ?, U_EMAIL = ?, "
+			String sql = "UPDATE IMDB_USER SET " + "U_USERNAME = ?, U_PASSWORD = ?, U_EMAIL = ?, "
 					+ "U_FIRSTNAME = ?, U_LASTNAME = ? WHERE U_ID = ?";
 			try (PreparedStatement ps = connection.prepareStatement(sql)) {
 				ps.setString(1, user.getUsername());
@@ -66,13 +70,14 @@ public class UserDAOImpl implements UserDAO {
 				if (ps.executeUpdate() != 1) {
 					throw new SQLException();
 				}
-				return getUser(user.getUsername());	
+				return getUser(user.getUsername());
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
 		return null;
 	}
+
 	public User deleteUser(User user) {
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			String sql = "DELETE FROM IMDB_USER WHERE U_ID = ?";
@@ -88,8 +93,8 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return null;
 	}
-	
-	//DQL
+
+	// DQL
 	public User getUser(int userId) {
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			String sql = "SELECT * FROM IMDB_USER WHERE U_ID = ?";
@@ -97,49 +102,38 @@ public class UserDAOImpl implements UserDAO {
 				ps.setInt(1, userId);
 				try (ResultSet rs = ps.executeQuery()) {
 					if (rs.next()) {
-						return new User(
-							rs.getInt("U_ID"),
-							rs.getString("U_USERNAME"), 
-							rs.getString("U_PASSWORD"),
-							rs.getString("U_EMAIL"),
-							rs.getString("U_FIRSTNAME"), 
-							rs.getString("U_LASTNAME")
-							);
-					}	
-				}	
+						return new User(rs.getInt("U_ID"), rs.getString("U_USERNAME"), rs.getString("U_PASSWORD"),
+								rs.getString("U_EMAIL"), rs.getString("U_FIRSTNAME"), rs.getString("U_LASTNAME"));
+					}
+				}
 			}
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
 		return null;
 	}
-	 
+
 	public User getUser(String username) {
 		User user = new User();
-		try (Connection connection = ConnectionUtil.getConnection()) {
-			String sql = "SELECT * FROM IMDB_USER WHERE U_USERNAME = ?";
-			try(PreparedStatement ps = connection.prepareStatement(sql)){
-				ps.setString(1, username);
-				ResultSet rs = ps.executeQuery();
-				if (rs.next()) {
-					user = new User(
-						rs.getInt("U_ID"),
-						rs.getString("U_USERNAME"), 
-						rs.getString("U_PASSWORD"),
-						rs.getString("U_EMAIL"),
-						rs.getString("U_FIRSTNAME"), 
-						rs.getString("U_LASTNAME")
-						);
-				}
+		Connection connection = null;
+		connection = cu.getConnection();
+		String sql = "SELECT * FROM IMDB_USER WHERE U_USERNAME = ?";
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				user = new User(rs.getInt("U_ID"), rs.getString("U_USERNAME"), rs.getString("U_PASSWORD"),
+						rs.getString("U_EMAIL"), rs.getString("U_FIRSTNAME"), rs.getString("U_LASTNAME"));
 			}
-		}catch (SQLException e) {
+			System.out.println(username);
+			System.out.println(user);
+		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
 		return user;
 	}
-	/*
-	http://54.145.242.129:8080/Project2/rest/user/all
-	 */
+
 	public ArrayList<User> getAllUsers() {
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			String sql = "SELECT * FROM IMDB_USER";
@@ -147,14 +141,8 @@ public class UserDAOImpl implements UserDAO {
 				try (ResultSet rs = ps.executeQuery()) {
 					ArrayList<User> users = new ArrayList<User>();
 					while (rs.next()) {
-						users.add(new User(
-							rs.getInt("U_ID"),
-							rs.getString("U_USERNAME"), 
-							rs.getString("U_PASSWORD"),
-							rs.getString("U_EMAIL"),
-							rs.getString("U_FIRSTNAME"), 
-							rs.getString("U_LASTNAME")
-							));
+						users.add(new User(rs.getInt("U_ID"), rs.getString("U_USERNAME"), rs.getString("U_PASSWORD"),
+								rs.getString("U_EMAIL"), rs.getString("U_FIRSTNAME"), rs.getString("U_LASTNAME")));
 					}
 					return users;
 				}
@@ -164,7 +152,7 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return null;
 	}
-	
+
 	// DML
 	public boolean insertCredentials(String username, String password) {
 		try (Connection connection = ConnectionUtil.getConnection()) {
@@ -178,31 +166,33 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return false;
 	}
+
 	public boolean updateCredentials(String username, String password) {
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			String sql = "ALTER USER " + username + " IDENTIFIED BY " + password;
 			try (Statement stmt = connection.createStatement()) {
 				stmt.executeUpdate(sql);
-				return true;	
+				return true;
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
 		return false;
 	}
+
 	public boolean deleteCredentials(String username) {
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			String sql = "DROP USER " + username;
 			try (Statement stmt = connection.createStatement()) {
 				stmt.executeUpdate(sql);
-				return true;	
+				return true;
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
 		return false;
 	}
-	
+
 	// DCL
 	public boolean grantDBPermissions(String username) {
 		try (Connection connection = ConnectionUtil.getConnection()) {
@@ -216,14 +206,14 @@ public class UserDAOImpl implements UserDAO {
 				stmt.execute(sql);
 				sql = "GRANT SELECT ON GAME_SESSION_SEQ TO " + username;
 				stmt.execute(sql);
-				return true;	
+				return true;
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
 		return false;
 	}
-	
+
 	public boolean revokeDBPermissions(String username) {
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			String sql;
@@ -241,7 +231,7 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return false;
 	}
-	
+
 	public String hashPassword(String username, String password) {
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			String sql = "SELECT GET_USER_HASH(?, ?) FROM dual";
@@ -250,7 +240,7 @@ public class UserDAOImpl implements UserDAO {
 				cs.setString(2, password);
 				ResultSet rs = cs.executeQuery();
 				if (rs.next()) {
-					return rs.getString(1);	
+					return rs.getString(1);
 				}
 			}
 		} catch (SQLException e) {
@@ -258,43 +248,36 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return null;
 	}
-	
+
 	/*
-	http://54.145.242.129:8080/Project2/rest/user
+	 * http://54.145.242.129:8080/Project2/rest/user
 	 */
 	public User attemptAuthentication(String username, String password) {
 		User user = null;
 		try (Connection connection = ConnectionUtil.getConnection()) {
-			
+
 			String sql = "SELECT * FROM IMDB_USER WHERE U_USERNAME = ? AND U_PASSWORD = ?";
-			try(PreparedStatement pstmt = connection.prepareStatement(sql)){
-				pstmt.setString(1,username);
+			try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+				pstmt.setString(1, username);
 				pstmt.setString(2, hashPassword(username, password));
 				ResultSet rs = pstmt.executeQuery();
-				if(rs.next()) {
-					user = new User(
-						rs.getInt("U_ID"),
-						rs.getString("U_USERNAME"), 
-						rs.getString("U_PASSWORD"),
-						rs.getString("U_EMAIL"),
-						rs.getString("U_FIRSTNAME"), 
-						rs.getString("U_LASTNAME")
-						);
-				}	
+				if (rs.next()) {
+					user = new User(rs.getInt("U_ID"), rs.getString("U_USERNAME"), rs.getString("U_PASSWORD"),
+							rs.getString("U_EMAIL"), rs.getString("U_FIRSTNAME"), rs.getString("U_LASTNAME"));
+				}
 			}
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
 		return user;
 	}
-	
+
 	/*
-	http://54.145.242.129:8080/Project2/rest/user/logout
+	 * http://54.145.242.129:8080/Project2/rest/user/logout
 	 */
 	public void logout(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		req.getSession().invalidate();
 
 	}
 
-	
 }
