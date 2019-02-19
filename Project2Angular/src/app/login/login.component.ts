@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {User, UserAttempt, UserService} from '../user.service';
-import {Router} from '@angular/router';
+
 
 
 @Component({
@@ -29,21 +29,16 @@ export class LoginComponent implements OnInit{
   login(): User {
     this.userService.loginUser(this.userAttempt).subscribe(
       response => {
-        console.log(this.userAttempt);
         // @ts-ignore
         this.user = response;
-        console.log(response);
-
-        console.log(this.user)
-      },
+        },
       (err: any) => console.log(`Error: $(err)`)
     );
     return this.user;
    // if (this.user.id>-1) {this.router.navigate(['/past-recs']);}
   }
 
-  constructor(private userService: UserService,
-              private router: Router) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     // this.userService.getUser().subscribe(

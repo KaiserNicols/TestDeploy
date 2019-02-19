@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
 /*
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    //'Authorization': 'my-auth-token',
-    //observe: 'response'
+    'Authorization': 'my-auth-token'
   })
 };
 */
-
-
 
 
 @Injectable({
@@ -20,8 +18,8 @@ const httpOptions = {
 
 export class UserService {
   constructor(private http: HttpClient) { }
-  //private baseUrl: string = 'http://localhost:8080/Project2/rest/';
-  private baseUrl: string = 'http://54.145.242.129:8080/Project2/rest/'
+  private baseUrl: string = 'http://localhost:8080/Project2/rest/';
+  // private baseUrl: string = 'http://54.145.242.129:8080/Project2/rest/'
 
   private userObservable: Observable<UserAttempt>;
   //private userObservable: Observable<any>;
