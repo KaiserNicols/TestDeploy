@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
 				try {
 					User newUser = mapper.readValue(request.getReader(), User.class);
 					System.out.println(newUser);
-					insertUser(newUser);
+					return insertUser(newUser);
 					
 				}catch (JsonParseException e) {
 					// TODO Auto-generated catch block
@@ -110,7 +110,7 @@ public class UserServiceImpl implements UserService {
 	public ArrayList<User> getAllUsers() {
 		return UserDAOImpl.getUserDAO().getAllUsers();
 	}
-	public User insertUser(User user) {
+	public boolean insertUser(User user) {
 		return UserDAOImpl.getUserDAO().insertUser(user);
 	}
 	

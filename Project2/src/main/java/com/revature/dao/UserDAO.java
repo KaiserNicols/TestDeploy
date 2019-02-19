@@ -6,7 +6,7 @@ import com.revature.model.User;
 
 public interface UserDAO {
 	// DML
-	public User insertUser(User user);
+	public boolean insertUser(User user);
 	public User updateUser(User user);
 	public User deleteUser(User user);
 	
