@@ -22,8 +22,8 @@ export class NewRecComponent implements OnInit {
   ngOnInit() {
     this.nav.show();
     this.recsService.getGenres().subscribe(
-      data => (this.genreList = data,
-            console.log(data)),
+      response => (this.genreList = response,
+            console.log(response)),
       err => console.log(`Error: ${err}`)
     )
   }
