@@ -77,6 +77,7 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		if (request.getMethod().equals("PUT")) {
+			//http://54.145.242.129:8080/Project2/rest/user/register
 			if (request.getRequestURI().contains("register")) {
 				try {
 					User newUser = mapper.readValue(request.getReader(), User.class);
