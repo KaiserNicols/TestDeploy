@@ -24,15 +24,20 @@ export class UserService {
   loginUser(userAttempt: User): Observable<User> {
     return this.http.post<User>(this.baseUrl + "user", userAttempt);
   }
+
+  registerUser(userAttempt: User): Observable<User> {
+    //http://54.145.242.129:8080/Project2/rest/user/register
+    return this.http.put<User>(this.baseUrl + "user/register", userAttempt);
+  }
+
 }
 
 @Injectable()
 export class User {
-  id: number;
-  email: string;
   username: string;
   password: string;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
+  email: string;
 }
 

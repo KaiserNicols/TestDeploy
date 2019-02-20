@@ -17,22 +17,16 @@ export class LoginComponent implements OnInit{
   login(): void {
     this.user.username = this.username;
     this.user.password = this.password;
-
     this.userService.loginUser(this.user).subscribe(
       response => {
         console.log(this.username, this.password);
         console.log(response);
-        //this.user.username = this.username;
-        //this.user.password = this.password;
-        console.log(this.username, this.password);
-        console.log(this.user.username!=null);
         if (this.user.username!=null) {this.router.navigate(['/past-recs']);}    
       },
       (err: any) => console.log(`Error: $(err)`)
     );
 
   }
-
 
   constructor(public userService: UserService,
               public user: User,
