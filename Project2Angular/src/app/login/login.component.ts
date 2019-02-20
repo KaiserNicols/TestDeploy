@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User, UserService} from '../user.service';
 import {Router} from '@angular/router';
+import { NavbarService } from '../navbar.service';
 
 
 @Component({
@@ -30,9 +31,12 @@ export class LoginComponent implements OnInit{
 
   constructor(public userService: UserService,
               public user: User,
-              public router: Router) { }
+              public acceptedUser: User,
+              public router: Router, 
+              public nav: NavbarService) { }
 
   ngOnInit() {
+    this.nav.hide();
   }
 
 

@@ -24,6 +24,10 @@ export class UserService {
     return this.http.post<User>(this.baseUrl + "user", userAttempt);
   }
 
+  // loginUser(user: User): Observable<User> {
+  //   return this.http.post<User>(this.baseUrl + "user", user)
+  // }
+
   registerUser(userAttempt: User): Observable<User> {
     return this.http.put<User>(this.baseUrl + "user/register", userAttempt);
   }

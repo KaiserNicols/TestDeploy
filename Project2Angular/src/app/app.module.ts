@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService, User } from './user.service';
 import { RecsService } from './recs.service';
+import { NavbarService } from './navbar.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { RecsService } from './recs.service';
     FormsModule,
     ReactiveFormsModule
     ],
-  providers: [ UserService, User, RecsService ],
+  providers: [ UserService, User, RecsService, NavbarService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
