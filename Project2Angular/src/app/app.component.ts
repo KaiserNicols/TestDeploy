@@ -7,7 +7,7 @@ import { User } from './user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'movie-rec-app';
+  title = 'Recommend me a movie!';
   constructor(){ }
 
   ngOnInit(){
