@@ -28,7 +28,7 @@ public class RecommendationServiceImpl implements RecommendationService{
 				int id = (int) session.getAttribute("id");
 				return getAllRecommendations(id);
 			}
-			//http://54.145.242.129:8080/Project2/rest/rec/all
+			//http://54.145.242.129:8080/Project2/rest/rec/entirelist
 			if (request.getRequestURI().contains("entirelist")) {
 				return getAllRecommendations();
 			}
