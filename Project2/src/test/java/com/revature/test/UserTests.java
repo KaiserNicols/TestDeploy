@@ -22,8 +22,8 @@ public class UserTests {
 		//ConnectionUtil.defaultCredentials();
 		//dao.insertCredentials(test.getUsername(), test.getPassword());
 		//dao.grantDBPermissions(test.getUsername());
-		test = dao.insertUser(test);
-		assertNotNull(test);
+		//test = dao.insertUser(test);
+		//assertNotNull(test);
 	}
 	
 

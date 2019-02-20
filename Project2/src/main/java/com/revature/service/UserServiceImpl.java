@@ -75,6 +75,26 @@ public class UserServiceImpl implements UserService {
 			}
 		return null; // TODO: Remove this later
 		}
+		
+		if (request.getMethod().equals("PUT")) {
+			if (request.getRequestURI().contains("register")) {
+				try {
+					User newUser = mapper.readValue(request.getReader(), User.class);
+					System.out.println(newUser);
+					return insertUser(newUser);
+					
+				}catch (JsonParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}catch (JsonMappingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 		return null;
 	}
 	
@@ -89,6 +109,9 @@ public class UserServiceImpl implements UserService {
 	}
 	public ArrayList<User> getAllUsers() {
 		return UserDAOImpl.getUserDAO().getAllUsers();
+	}
+	public boolean insertUser(User user) {
+		return UserDAOImpl.getUserDAO().insertUser(user);
 	}
 	
 

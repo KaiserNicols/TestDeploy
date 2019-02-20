@@ -1,53 +1,43 @@
 <div class="container">
   <h2 class='text-center'>Register New Account</h2>
-  <form>
+  <form #loginForm="ngForm">
     <div class="form-group col-md">
       <label for="username">Username</label>
-      <input type="text" class="form-control" placeholder="Enter your username">
-      <div>
-        <div>
-          <!-- add some functionality to validate here -->
-        </div>
-      </div>
+      <input type="text" id="username" 
+          class="form-control" name="username" required
+          placeholder="Enter your username"
+          [(ngModel)]="username">
     </div>
     <div class="form-group col-md">
       <label for="password">Password</label>
-      <input type="password" class="form-control" placeholder="Enter your password">
-      <div>
-        <div>
-           <!-- add some functionality to validate here -->
-        </div>
-      </div>
+      <input type="password" id="password"
+          class="form-control" name="password" required 
+          placeholder="Enter your password" 
+          [(ngModel)]="password">
     </div>
     <div class="form-group col-md">
       <label for="firstname">First Name</label>
-      <input type="text" class="form-control" placeholder="Enter your first name">
-      <div>
-        <div>
-           <!-- add some functionality to validate here -->
-        </div>
-      </div>
+          <input type="text" id="firstname"
+              class="form-control" name="firstname" required 
+              placeholder="Enter your first name" 
+              [(ngModel)]="firstname">
     </div>
     <div class="form-group col-md">
       <label for="password">Last Name</label>
-      <input type="text" class="form-control" placeholder="Enter your last name">
-      <div>
-        <div>
-           <!-- add some functionality to validate here -->
-        </div>
-      </div>
+      <input type="text" id="lastname" 
+          class="form-control" name="lastname" required 
+          placeholder="Enter your last name" 
+          [(ngModel)]="lastname">
     </div>
     <div class="form-group col-md">
       <label for="email">Email</label>
-      <input type="text" class="form-control" placeholder="Enter your email">
-      <div>
-        <div>
-           <!-- add some functionality to validate here -->
-        </div>
-      </div>
+      <input type="text" id="email" 
+          class="form-control" name="email" 
+          placeholder="Enter your email" required 
+          [(ngModel)]="email">
     </div>
     <div class="form-group col-md">
-      <button class="btn btn-primary" type="button" value="createBtn" (click)="createAccount">Create Account</button>
+      <button class="btn btn-primary" type="button" value="createBtn" (click)="register()">Create Account</button>
       <button class="btn btn-light" type="reset" value="Reset">Reset</button>
     </div>
       <a class="nav-link text-dark" [routerLink]="['/login']">Return to login screen</a>

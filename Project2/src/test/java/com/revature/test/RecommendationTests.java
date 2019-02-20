@@ -26,7 +26,7 @@ public class RecommendationTests {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		testUser = udao.insertUser(testUser);
+		//testUser = udao.insertUser(testUser);
 		testRec = new Recommendation(-1, testUser.getId(), -1, false, new Date().toString());
 		testRec = rdao.insertRecommendation(testRec);
 		assertNotNull(testRec);
