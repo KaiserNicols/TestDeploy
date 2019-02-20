@@ -36,6 +36,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	// DML
+	//http://54.145.242.129:8080/Project2/rest/user/register
 	public boolean insertUser(User user) {
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			String sql = "INSERT INTO IMDB_USER values(NULL,?,?,?,?,?)";
