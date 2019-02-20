@@ -20,8 +20,8 @@ const httpOptions = {
 
 export class UserService {
   constructor(private http: HttpClient) { }
-  // private baseUrl: string = 'http://localhost:8080/Project2/rest/';
-  private baseUrl: string = 'http://54.145.242.129:8080/Project2/rest/'
+   private baseUrl: string = 'http://localhost:8080/Project2/rest/';
+  //private baseUrl: string = 'http://54.145.242.129:8080/Project2/rest/'
 
   private userObservable: Observable<UserAttempt>;
   //private userObservable: Observable<any>;
@@ -29,6 +29,10 @@ export class UserService {
   loginUser(userAttempt: UserAttempt): Observable<UserAttempt> {
     return this.http.post<User>(this.baseUrl + "user", userAttempt);
   }
+
+  // loginUser(user: User): Observable<User> {
+  //   return this.http.post<User>(this.baseUrl + "user", user)
+  // }
 
   registerUser(userAttempt: User): Observable<User> {
     //http://54.145.242.129:8080/Project2/rest/user/register
