@@ -23,7 +23,8 @@ export class NewRecComponent implements OnInit {
     this.nav.show();
     this.recsService.getGenres().subscribe(
       response => (this.genreList = response,
-            console.log(response)),
+            console.log(response),
+            console.log(this.genreList)),
       err => console.log(`Error: ${err}`)
     )
   }
