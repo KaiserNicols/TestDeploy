@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit{
         //this.user.password = this.password;
         console.log(this.username, this.password);
         console.log(this.user.username!=null);
-        if (this.user.username!=null) {this.router.navigate(['/past-recs']);}    
+        if (this.user.username!=null) {this.router.navigate(['/past-recs'])}  
       },
       (err: any) => console.log(`Error: $(err)`)
     );
