@@ -36,7 +36,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	// DML
-	public User insertUser(User user) {
+	public boolean insertUser(User user) {
 		try (Connection connection = ConnectionUtil.getConnection()) {
 			String sql = "INSERT INTO IMDB_USER values(NULL,?,?,?,?,?)";
 			try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -48,12 +48,13 @@ public class UserDAOImpl implements UserDAO {
 				if (ps.executeUpdate() != 1) {
 					throw new SQLException();
 				}
-				return getUser(user.getUsername()); // to return the triggered id
+				//return getUser(user.getUsername()); 
+				return true;// to return the triggered id
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
-		return null;
+		return false;
 	}
 
 	public User updateUser(User user) {
