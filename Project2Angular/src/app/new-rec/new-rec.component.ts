@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {User, UserService} from '../user.service';
+import {Router} from '@angular/router';
+import { Observable } from 'rxjs';
+import { RecsService, genres } from '../recs.service';
 
 @Component({
   selector: 'app-new-rec',
@@ -8,9 +12,17 @@ import { Component, OnInit } from '@angular/core';
 export class NewRecComponent implements OnInit {
 
   title = "Get a Recommendation";
-  constructor() { }
-
+  private genreList: genres[];
+  constructor(public userService: UserService,
+    public user: User,
+    public router: Router,
+    private recsService: RecsService) { }
+  
   ngOnInit() {
+    this.recsService.getGenres().subscribe(
+      data => this.genreList = data,
+      err => console.log(`Error: ${err}`)
+    )
   }
 
 }

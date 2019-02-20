@@ -1,1 +1,18 @@
 <h1>{{title}}</h1>
+<div class="container">
+    <form #loginForm="ngForm">
+        <div class="form-group col-md checkbox">
+            <label for="rating">Rating</label>
+                <input type="checkbox-inline" checked type="checkbox" name="rating" class="form-control" value=1>G<br>
+                <input type="checkbox-inline" checked type="checkbox" name="rating" class="form-control" value=2>PG<br>
+                <input type="checkbox-inline" checked type="checkbox" name="rating" class="form-control" value=3>PG-13<br>
+                <input type="checkbox-inline" checked type="checkbox" name="rating" class="form-control" value=4>R<br> 
+        </div>
+        <div class="form-group col-md">
+            <label for="genre">Genre</label>
+                <select *ngFor="let genreList of genres" name="genre" id="genre" class="form-control">
+                    <option>{{ genre.name }}</option>
+                </select>
+        </div>
+    </form>
+</div>
