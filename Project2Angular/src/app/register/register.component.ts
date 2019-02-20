@@ -24,8 +24,8 @@ export class RegisterComponent implements OnInit {
     this.user.email = this.email;
     this.userService.registerUser(this.user).subscribe(
       response => {
-        console.log(this.user);
-        console.log(response);
+        //console.log(this.user);
+        //console.log(response);
         if (this.user!=null) {this.router.navigate(['/login']);}  
       },
       (err: any) => console.log(`Error: $(err)`)

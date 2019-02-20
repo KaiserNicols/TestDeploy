@@ -41,9 +41,6 @@ public class UserServiceImpl implements UserService {
 			if (request.getRequestURI().contains("logout")) {
 				try {
 					UserDAOImpl.getUserDAO().logout(request, response);
-					//String loginUrl = "http://localhost:8080/ExpenseReimbursement/html/Login.html";
-					//response.setHeader("Location", loginUrl);
-					response.sendRedirect("https://www.google.com/");
 					return null;
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -59,8 +56,6 @@ public class UserServiceImpl implements UserService {
 					HttpSession session = request.getSession();
 					session.setAttribute("username", attempting.getUsername());
 					session.setAttribute("id", attempting.getId());
-					String url = "https://www.google.com/";
-					response.setHeader("Location", url);
 					return attempting;
 					}
 			}catch (JsonParseException e) {
@@ -77,6 +72,7 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		if (request.getMethod().equals("PUT")) {
+			//http://54.145.242.129:8080/Project2/rest/user/register
 			if (request.getRequestURI().contains("register")) {
 				try {
 					User newUser = mapper.readValue(request.getReader(), User.class);

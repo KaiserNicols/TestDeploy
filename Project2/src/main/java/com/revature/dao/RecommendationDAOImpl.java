@@ -158,6 +158,7 @@ public class RecommendationDAOImpl implements RecommendationDAO {
 			String sql = "SELECT * FROM IMDB_RECOMMENDATION";
 			try (PreparedStatement ps = connection.prepareStatement(sql)) {
 				try (ResultSet rs = ps.executeQuery()) {
+					System.out.println("Made it here");
 					ArrayList<Recommendation> recommendation = new ArrayList<Recommendation>();
 					while (rs.next()) {
 						recommendation.add(new Recommendation(
