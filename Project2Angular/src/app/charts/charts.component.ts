@@ -10,10 +10,10 @@ import { RecommendationService } from '../recommendation.service';
 export class ChartsComponent implements OnInit {
   
   recommendations: Recommendation[];
-
+  
   personalChartTitle = "Recommendations for you";
   personalChartType = "PieChart";
-  personalChartData;
+  personalChartData = [ ["Helpful", 0], ["Unhelpful", 0] ];
   personalChartColNames = ['Status', 'Count'];
   personalChartOptions = {
     'width': 400,
@@ -22,7 +22,7 @@ export class ChartsComponent implements OnInit {
 
   groupChartTitle = "Recommendations for all users";
   groupChartType = "BarChart";
-  groupChartData;
+  groupChartData = [ ["Helpful", 0], ["Unhelpful", 0] ];
   groupChartColNames = ['Status', 'Count'];
   groupChartOptions = {
     'width': 400,
