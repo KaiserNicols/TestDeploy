@@ -28,6 +28,10 @@ public class RecommendationServiceImpl implements RecommendationService{
 				int id = (int) session.getAttribute("id");
 				return getAllRecommendations(id);
 			}
+			//http://54.145.242.129:8080/Project2/rest/rec/entirelist
+			if (request.getRequestURI().contains("entirelist")) {
+				return getAllRecommendations();
+			}
 			
 		}
 		
@@ -37,6 +41,9 @@ public class RecommendationServiceImpl implements RecommendationService{
 	
 	public ArrayList<Recommendation> getAllRecommendations(int userId){
 		return RecommendationDAOImpl.getRecommendationDAO().getAllRecommendations(userId);
+	}
+	public ArrayList<Recommendation> getAllRecommendations() {
+		return RecommendationDAOImpl.getRecommendationDAO().getAllRecommendations();
 	}
 
 }

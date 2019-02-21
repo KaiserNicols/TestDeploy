@@ -11,9 +11,6 @@ const httpOptions = {
 };
 */
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -23,21 +20,22 @@ export class UserService {
   // private baseUrl: string = 'http://localhost:8080/Project2/rest/';
   private baseUrl: string = 'http://54.145.242.129:8080/Project2/rest/'
 
-  private userObservable: Observable<UserAttempt>;
-  //private userObservable: Observable<any>;
-
   loginUser(userAttempt: UserAttempt): Observable<UserAttempt> {
     return this.http.post<User>(this.baseUrl + "user", userAttempt);
   }
 
+  // loginUser(user: User): Observable<User> {
+  //   return this.http.post<User>(this.baseUrl + "user", user)
+  // }
+
   registerUser(userAttempt: User): Observable<User> {
-    //http://54.145.242.129:8080/Project2/rest/user/register
     return this.http.put<User>(this.baseUrl + "user/register", userAttempt);
   }
 
 }
 
 export class User {
+  id: number;
   username: string;
   password: string;
   firstName: string;

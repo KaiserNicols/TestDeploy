@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User, UserService} from '../user.service';
 import {Router} from '@angular/router';
+import { NavbarService } from '../navbar.service';
 
 @Component({
   selector: 'app-register',
@@ -23,8 +24,8 @@ export class RegisterComponent implements OnInit {
     this.user.email = this.email;
     this.userService.registerUser(this.user).subscribe(
       response => {
-        console.log(this.user);
-        console.log(response);
+        //console.log(this.user);
+        //console.log(response);
         if (this.user!=null) {this.router.navigate(['/login']);}  
       },
       (err: any) => console.log(`Error: $(err)`)
@@ -33,8 +34,9 @@ export class RegisterComponent implements OnInit {
 
   constructor(public userService: UserService,
     public user: User,
-    public router: Router) { }
+    public router: Router,
+    public nav: NavbarService) { }
   ngOnInit() {
-  }
+  this.nav.hide();}
 
 }

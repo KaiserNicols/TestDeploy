@@ -1,6 +1,7 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import {User, UserService} from '../user.service';
 import {Router} from '@angular/router';
+import { NavbarService } from '../navbar.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,11 +10,9 @@ import {Router} from '@angular/router';
 })
 export class NavbarComponent implements OnInit{
   constructor(public userService: UserService,
-    public user: User,private router: Router) { }
+    public user: User,private router: Router, public nav: NavbarService) { }
 
-  ngOnInit(showNav: boolean = false,
-    blankUser = this.user,
-    ) {}  
+  ngOnInit() {}  
 
   username = this.user.username
   password = this.user.password

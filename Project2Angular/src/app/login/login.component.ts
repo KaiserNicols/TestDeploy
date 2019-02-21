@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {User, UserService} from '../user.service';
 import {Router} from '@angular/router';
+import { NavbarService } from '../navbar.service';
 
 
 @Component({
@@ -19,9 +20,9 @@ export class LoginComponent implements OnInit{
     this.user.password = this.password;
     this.userService.loginUser(this.user).subscribe(
       response => {
-        console.log(this.username, this.password);
-        console.log(response);
-        if (this.user.username!=null) {this.router.navigate(['/past-recs']);}    
+        //console.log(this.username, this.password);
+        //console.log(response);
+        if (response.username!=null) {this.router.navigate(['/past-recs']);}    
       },
       (err: any) => console.log(`Error: $(err)`)
     );
@@ -30,9 +31,12 @@ export class LoginComponent implements OnInit{
 
   constructor(public userService: UserService,
               public user: User,
-              public router: Router) { }
+              public acceptedUser: User,
+              public router: Router, 
+              public nav: NavbarService) { }
 
   ngOnInit() {
+    this.nav.hide();
   }
 
 

@@ -17,6 +17,8 @@ import { RecommendationService } from './recommendation.service';
 import { Recommendation } from './recommendation';
 
 import { GoogleChartsModule } from 'angular-google-charts';
+import { RecsService } from './recs.service';
+import { NavbarService } from './navbar.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
     ReactiveFormsModule,
     GoogleChartsModule
     ],
-  providers: [ UserService, User ],
+  providers: [ UserService, User, RecsService, NavbarService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
