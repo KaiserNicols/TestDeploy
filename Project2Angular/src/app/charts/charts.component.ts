@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Recommendation } from '../recommendation';
 import { RecommendationService } from '../recommendation.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-charts',
@@ -30,18 +31,21 @@ export class ChartsComponent implements OnInit {
     'height': 300
   };
   
-  constructor(private recommendationService: RecommendationService) {}
+  constructor(
+    private recommendationService: RecommendationService,
+    public userService: UserService) {}
 
   ngOnInit() {
-    this.getAllRecommendations();
     this.getRecommendations();
+    this.getAllRecommendations();
   }
 
   getRecommendations(): void {
     this.recommendationService.getRecommendations()
         .subscribe(recommendations => 
           {
-          console.log("JASON --- getRecommendations() recommendations are...");
+          console.log("JASON --- currentUser is...");
+          console.log(this.userService.getCurrentUser());
           console.log(recommendations);
           this.personalRecommendations = recommendations;
           this.setPersonalChartData();
@@ -54,8 +58,6 @@ export class ChartsComponent implements OnInit {
     this.recommendationService.getAllRecommendations()
         .subscribe(recommendations => 
           {
-          console.log("JASON --- getAllRecommendations() recommendations are...");
-          console.log(recommendations);
           this.groupRecommendations = recommendations
           this.setGroupChartData();
           }
