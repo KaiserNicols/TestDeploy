@@ -28,6 +28,7 @@ export class ChartsComponent implements OnInit {
     'width': 400,
     'height': 300
   };
+  
   constructor(private recommendationService: RecommendationService) {}
 
   ngOnInit() {
