@@ -22,14 +22,20 @@ export class NewRecComponent implements OnInit {
     public router: Router,
     public recsService: RecsService,
     public nav: NavbarService) { }
+    public genre: genres;
+    public genres: genres[];
   
   ngOnInit() {
     this.nav.show();
+    
     this.recsService.getGenres().subscribe(
-      response => (this.genreList = response,
-            console.log(response),
-            console.log(this.genreList)),
-      err => console.log(`Error: ${err}`)
+      data => { this.genres = data["genres"];
+           this.genre = this.genres[0];
+            console.log(this.genre["name"]);
+            console.log(this.genres);
+            
+          }
+          ,err => console.log(`Error: ${err}`)
     )
   }
 
