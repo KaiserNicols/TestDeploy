@@ -12,7 +12,11 @@ import { NavbarService } from '../navbar.service';
 export class NewRecComponent implements OnInit {
 
   title = "Get a Recommendation";
-  private genreList: genres[];
+  genreList: genres[];
+  release: number;
+  rating: string;
+  actor: string;
+  actorId: number;
   constructor(public userService: UserService,
     public user: User,
     public router: Router,
