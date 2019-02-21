@@ -33,19 +33,30 @@ export class ChartsComponent implements OnInit {
 
   ngOnInit() {
     this.getRecommendations();
-    this.setPersonalChartData();
     this.getAllRecommendations();
-    this.setGroupChartData();
   }
 
   getRecommendations(): void {
     this.recommendationService.getRecommendations()
-        .subscribe(recommendations => this.recommendations = recommendations);
+        .subscribe(recommendations => 
+          {
+          console.log(recommendations);
+          this.recommendations = recommendations;
+          this.setPersonalChartData();
+          }
+        );
+      
   }
 
   getAllRecommendations(): void {
     this.recommendationService.getAllRecommendations()
-        .subscribe(recommendations => this.recommendations = recommendations);
+        .subscribe(recommendations => 
+          {
+          console.log(recommendations);
+          this.recommendations = recommendations
+          this.setGroupChartData();
+          }
+        );
   }
 
   setPersonalChartData() : void {
