@@ -8,11 +8,24 @@
                 <div><label class="checkbox-inline"><input type="checkbox" checked name="rating" class="form-control" value=3>PG-13</label></div>
                 <div><label class="checkbox-inline"><input type="checkbox" checked name="rating" class="form-control" value=4>R</label></div>
         </div>
+        
+
+        <p>{{genres | json}}</p>
+
         <div class="form-group col-md">
             <label for="genre">Genre</label>
                 <select name="genre" id="genre" class="form-control">
-                    <option [value]="genre.name" *ngFor="let genreList of genres">{{ genre.name }}</option>
+                    <option [value]="genre.name" *ngFor = "let genre of genres" >{{genre.name}}</option>
                 </select>
         </div>
+    
+    <!---
+    <div class="form-group col-md"></div>
+        <label for="genre">Genre</label>
+        <select ng-options="genres.name for genres in data" ng-model="chosen">
+            <option value="" disabled selected>{{ genres.name }}</option>
+        </select>
+    </div>
+    -->
     </form>
 </div>
