@@ -26,9 +26,6 @@
             <label for="actor">Search by an Actor/Actress</label>
             <input type="text" for="actor" id="actor" placeholder="Enter name" [(ngModel)]="actor">
         </div>
-        
-
-        <p>{{genres | json}}</p>
 
         <div class="form-group col-md">
             <label for="genre">Genre</label>
@@ -37,13 +34,5 @@
                 </select>
         </div>
     
-    <!---
-    <div class="form-group col-md"></div>
-        <label for="genre">Genre</label>
-        <select ng-options="genres.name for genres in data" ng-model="chosen">
-            <option value="" disabled selected>{{ genres.name }}</option>
-        </select>
-    </div>
-    -->
     </form>
 </div>
