@@ -11,20 +11,20 @@
         <div class="form-group col-md">
             <label for="genre">Search by Genre</label>
             <select name="genre" id="genre" class="form-control">
-                <option [value]="genre.name" *ngFor="let genres of genreList">{{ genre.name }}</option>
+                <option name="genres" [value]="genre.name" *ngFor="let genres of genreList">{{ genre.name }}</option>
             </select>
         </div>
         <div class="form-group col-md">
             <label for="release">Search by Release Date</label>
-            <input type="text" id="release" min="1900" max="2019" placeholder="2019" [(ngModel)]="release">
+            <input type="number" id="release" min="1900" max="2019" placeholder="2019" [(ngModel)]="release">
         </div>
         <div>
             <label for="rating">Search by User Ratings</label>
-            <input for="rating" id="rating" min="0" max="10" placeholder="0-10" [(ngModel)]="rating">
+            <input type="number" for="rating" id="rating" min="0" max="10" placeholder="0-10" [(ngModel)]="rating">
         </div>
         <div>
             <label for="actor">Search by an Actor/Actress</label>
-            <input for="actor" id="actor" placeholder="Enter name" [(ngModel)]="actor">
+            <input type="text" for="actor" id="actor" placeholder="Enter name" [(ngModel)]="actor">
         </div>
     </form>
 </div>
