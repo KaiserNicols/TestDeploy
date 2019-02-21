@@ -33,14 +33,15 @@ export class ChartsComponent implements OnInit {
   constructor(private recommendationService: RecommendationService) {}
 
   ngOnInit() {
-    //this.getRecommendations();
     this.getAllRecommendations();
+    this.getRecommendations();
   }
 
   getRecommendations(): void {
     this.recommendationService.getRecommendations()
         .subscribe(recommendations => 
           {
+          console.log("JASON --- getRecommendations() recommendations are...");
           console.log(recommendations);
           this.personalRecommendations = recommendations;
           this.setPersonalChartData();
@@ -53,6 +54,7 @@ export class ChartsComponent implements OnInit {
     this.recommendationService.getAllRecommendations()
         .subscribe(recommendations => 
           {
+          console.log("JASON --- getAllRecommendations() recommendations are...");
           console.log(recommendations);
           this.groupRecommendations = recommendations
           this.setGroupChartData();
