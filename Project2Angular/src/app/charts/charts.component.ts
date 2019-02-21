@@ -9,7 +9,8 @@ import { RecommendationService } from '../recommendation.service';
 })
 export class ChartsComponent implements OnInit {
   
-  recommendations: Recommendation[];
+  personalRecommendations: Recommendation[];
+  groupRecommendations: Recommendation[];
   
   personalChartTitle = "Recommendations for you";
   personalChartType = "PieChart";
@@ -41,7 +42,7 @@ export class ChartsComponent implements OnInit {
         .subscribe(recommendations => 
           {
           console.log(recommendations);
-          this.recommendations = recommendations;
+          this.personalRecommendations = recommendations;
           this.setPersonalChartData();
           }
         );
@@ -53,7 +54,7 @@ export class ChartsComponent implements OnInit {
         .subscribe(recommendations => 
           {
           console.log(recommendations);
-          this.recommendations = recommendations
+          this.groupRecommendations = recommendations
           this.setGroupChartData();
           }
         );
@@ -62,8 +63,8 @@ export class ChartsComponent implements OnInit {
   setPersonalChartData() : void {
     let helpfulCount = 0;
     let unhelpfulCount = 0;
-    for (let i=0; i<this.recommendations.length; i++) {
-      if (this.recommendations[i].helpful) {
+    for (let i=0; i<this.personalRecommendations.length; i++) {
+      if (this.personalRecommendations[i].helpful) {
         helpfulCount++;
       } else {
         unhelpfulCount++;
@@ -75,8 +76,8 @@ export class ChartsComponent implements OnInit {
   setGroupChartData() : void {
     let helpfulCount = 0;
     let unhelpfulCount = 0;
-    for (let i=0; i<this.recommendations.length; i++) {
-      if (this.recommendations[i].helpful) {
+    for (let i=0; i<this.groupRecommendations.length; i++) {
+      if (this.groupRecommendations[i].helpful) {
         helpfulCount++;
       } else {
         unhelpfulCount++;
