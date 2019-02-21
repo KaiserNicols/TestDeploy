@@ -13,7 +13,7 @@ export class NewRecComponent implements OnInit {
 
   title = "Get a Recommendation";
   genreList: genres[];
-  release: string;
+  release: number;
   rating: string;
   actor: string;
   actorId: number;

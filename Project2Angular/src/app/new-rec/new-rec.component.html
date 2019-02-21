@@ -1,13 +1,13 @@
 <h1>{{title}}</h1>
 <div class="container">
     <form #loginForm="ngForm">
-        <div class="form-group col-md checkbox">
+        <!-- <div class="form-group col-md checkbox"> -->
             <!-- <label for="rating">Rating</label> -->
                 <!-- <div><label class="checkbox-inline"><input type="checkbox" checked name="rating" class="form-control" value="G">G</label></div>
                 <div><label class="checkbox-inline"><input type="checkbox" checked name="rating" class="form-control" value="PG">PG</label></div>
                 <div><label class="checkbox-inline"><input type="checkbox" checked name="rating" class="form-control" value="PG-13">PG-13</label></div>
                 <div><label class="checkbox-inline"><input type="checkbox" checked name="rating" class="form-control" value="R">R</label></div> -->
-        </div>
+        <!-- </div> -->
         <div class="form-group col-md">
             <label for="genre">Search by Genre</label>
             <select name="genre" id="genre" class="form-control">
@@ -16,15 +16,19 @@
         </div>
         <div class="form-group col-md">
             <label for="release">Search by Release Date</label>
-            <input type="number" id="release" min="1900" max="2019" placeholder="2019" [(ngModel)]="release">
+            <input type="number" id="release" min="1900" max="2019" placeholder="1900-2019" [(ngModel)]="release">
         </div>
-        <div>
+        <div class="form-group col-md">
             <label for="rating">Search by User Ratings</label>
             <input type="number" for="rating" id="rating" min="0" max="10" placeholder="0-10" [(ngModel)]="rating">
         </div>
-        <div>
+        <div class="form-group col-md">
             <label for="actor">Search by an Actor/Actress</label>
             <input type="text" for="actor" id="actor" placeholder="Enter name" [(ngModel)]="actor">
+        </div>
+        <div class="form-group col-md">
+            <button class="btn btn-primary" type="submit" value="Login" (submit)="getRec()">Login</button>
+            <button class="btn btn-light" type="reset" value="Reset">Reset</button>
         </div>
     </form>
 </div>
