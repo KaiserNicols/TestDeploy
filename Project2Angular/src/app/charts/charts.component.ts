@@ -33,7 +33,7 @@ export class ChartsComponent implements OnInit {
   constructor(private recommendationService: RecommendationService) {}
 
   ngOnInit() {
-    this.getRecommendations();
+    //this.getRecommendations();
     this.getAllRecommendations();
   }
 
