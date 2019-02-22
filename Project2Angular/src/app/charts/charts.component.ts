@@ -36,7 +36,7 @@ export class ChartsComponent implements OnInit {
     public userService: UserService) {}
 
   ngOnInit() {
-    this.getRecommendations();
+    //this.getRecommendations();
     this.getAllRecommendations();
   }
 
@@ -58,6 +58,8 @@ export class ChartsComponent implements OnInit {
     this.recommendationService.getAllRecommendations()
         .subscribe(recommendations => 
           {
+          console.log("JASON --- currentUser is...");
+          console.log(this.userService.getCurrentUser());
           this.groupRecommendations = recommendations
           this.setGroupChartData();
           }
