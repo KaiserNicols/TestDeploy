@@ -42,12 +42,17 @@ public class RecommendationServiceImpl implements RecommendationService{
 		if (request.getMethod().equals("POST")) {
 			if (request.getRequestURI().contains("all")) {
 				User logPlayer = null;
+				System.out.println("is the POST");
 				try {
 					logPlayer = mapper.readValue(request.getReader(), User.class);
 					final String username = logPlayer.getUsername();
 					final String password = logPlayer.getPassword();
 					System.out.println(username);
 					System.out.println(password);
+					User currentUser = new User();
+					currentUser = getUser(username);
+					System.out.println(currentUser.getId());
+					return getAllRecommendations(currentUser.getId());
 				} catch (JsonParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -58,7 +63,6 @@ public class RecommendationServiceImpl implements RecommendationService{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
 			}
 		}
 		
@@ -72,5 +76,9 @@ public class RecommendationServiceImpl implements RecommendationService{
 	public ArrayList<Recommendation> getAllRecommendations() {
 		return RecommendationDAOImpl.getRecommendationDAO().getAllRecommendations();
 	}
+	public User getUser(String username) {
+		return UserDAOImpl.getUserDAO().getUser(username);
+	}
+	
 
 }

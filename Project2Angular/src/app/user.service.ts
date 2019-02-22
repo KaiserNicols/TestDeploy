@@ -15,17 +15,10 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-<<<<<<< HEAD
   constructor(private http: HttpClient) { }
- // private baseUrl: string = 'http://localhost:8080/Project2/rest/';
+  //private baseUrl: string = 'http://localhost:8080/Project2/rest/';
  private baseUrl: string = 'http://54.145.242.129:8080/Project2/rest/'
-=======
-  // private baseUrl: string = 'http://localhost:8080/Project2/rest/';
-  private baseUrl: string = 'http://54.145.242.129:8080/Project2/rest/'
-  private currentUser: UserAttempt;
-  
-  constructor(private http: HttpClient) { }
->>>>>>> c60bc561386041e54ea1225aea186554e2a9cfb2
+currentUser: UserAttempt;
 
   loginUser(userAttempt: UserAttempt): Observable<UserAttempt> {
     this.currentUser = userAttempt;
