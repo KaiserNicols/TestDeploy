@@ -46,6 +46,7 @@ export class NewRecComponent implements OnInit {
   }
   
   getRec(): void{
+    this.getAppend = "";
     console.log(this.release);
     console.log(this.rating);
     console.log(this.selectActor);
