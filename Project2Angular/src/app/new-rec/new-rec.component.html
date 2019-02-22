@@ -2,7 +2,7 @@
     <h1>{{title}}</h1>
 </div>
 <div class="container">
-    <form #loginForm="ngForm">
+    <form #getRecForm="ngForm">
         <!-- <div class="form-group col-md checkbox"> -->
             <!-- <label for="rating">Rating</label> -->
                 <!-- <div><label class="checkbox-inline"><input type="checkbox" checked name="rating" class="form-control" value="G">G</label></div>
@@ -33,7 +33,16 @@
             <button class="btn btn-light" type="reset" value="Reset">Reset</button>
         </div>
     </form>
+    <div class="form-group col-md" *ngIf="recIsHidden">
+        <h6>Your recommendation is:</h6>
+        <h4>{{recTitle}}</h4>
+        <image source="recPosterURL" alt="Recommended film poster"></image>
+        <form #loginForm="ngForm">
+            <div class="form-group col-md">
+                <button class="btn btn-primary" type="button" value="Like" (click)="submitGoodRec()">Love it!</button>
+                <button class="btn btn-dark" type="button" value="Dislike" (click)="submitBadRec()">Hate it!</button>
+            </div>
+        </form>
+    </div>
 </div>
-<p>{{recommendation | json}}</p>
-<p>{{recTitle}}</p>
-<p>{{recPosterURL}}</p>
+
