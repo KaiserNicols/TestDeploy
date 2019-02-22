@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Recommendation } from './recommendation';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UserAttempt } from './user.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -18,8 +19,8 @@ export class RecommendationService {
 
   constructor(private http: HttpClient) { }
 
-  getRecommendations(): Observable<Recommendation[]> {
-    return this.http.get<Recommendation[]>(this.baseUrl + this.getRecommendationsURL);
+  getRecommendations(currentUser: UserAttempt): Observable<Recommendation[]> {
+    return this.http.post<Recommendation[]>(this.baseUrl + this.getRecommendationsURL, currentUser);
   }
 
   getAllRecommendations(): Observable<Recommendation[]> {

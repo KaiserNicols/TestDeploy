@@ -36,12 +36,12 @@ export class ChartsComponent implements OnInit {
     public userService: UserService) {}
 
   ngOnInit() {
-    //this.getRecommendations();
+    this.getRecommendations();
     this.getAllRecommendations();
   }
 
   getRecommendations(): void {
-    this.recommendationService.getRecommendations()
+    this.recommendationService.getRecommendations(this.userService.getCurrentUser())
         .subscribe(recommendations => 
           {
           console.log("JASON --- currentUser is...");
