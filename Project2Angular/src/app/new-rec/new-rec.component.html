@@ -20,17 +20,20 @@
         </div>
         <div class="form-group col-md">
             <label for="actor">Search by an Actor/Actress</label>
-            <input type="text" name="actor" id="actor" placeholder="Enter name" [(ngModel)]="actor">
+            <input type="text" name="actor" id="actor" placeholder="Enter name" [(ngModel)]="selectActor">
         </div>
         <div class="form-group col-md">
             <label for="genre">Search by Genre</label>
-                <select name="genre" id="genre" class="form-control">
+                <select name="genre" id="genre" class="form-control" [(ngModel)]="selectGenre">
                     <option [value]="genre.name" *ngFor = "let genre of genres" >{{genre.name}}</option>
                 </select>
         </div>
         <div class="form-group col-md">
-            <button class="btn btn-primary" type="submit" value="Login" (submit)="getRec()">Login</button>
+            <button class="btn btn-primary" type="button" value="Submit" (click)="getRec()">Submit</button>
             <button class="btn btn-light" type="reset" value="Reset">Reset</button>
         </div>
     </form>
 </div>
+<p>{{recommendation | json}}</p>
+<p>{{recTitle}}</p>
+<p>{{recPosterURL}}</p>

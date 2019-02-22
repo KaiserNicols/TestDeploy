@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,10 +9,13 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.dao.RecommendationDAOImpl;
 import com.revature.dao.UserDAOImpl;
 import com.revature.model.Recommendation;
+import com.revature.model.User;
 
 public class RecommendationServiceImpl implements RecommendationService{
 	
@@ -34,6 +38,28 @@ public class RecommendationServiceImpl implements RecommendationService{
 				return getAllRecommendations();
 			}
 			
+		}
+		if (request.getMethod().equals("POST")) {
+			if (request.getRequestURI().contains("all")) {
+				User logPlayer = null;
+				try {
+					logPlayer = mapper.readValue(request.getReader(), User.class);
+					final String username = logPlayer.getUsername();
+					final String password = logPlayer.getPassword();
+					System.out.println(username);
+					System.out.println(password);
+				} catch (JsonParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JsonMappingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
 		}
 		
 		

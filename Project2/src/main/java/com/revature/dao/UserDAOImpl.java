@@ -114,27 +114,26 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return null;
 	}
-
+	
 	public User getUser(String username) {
-		User user = new User();
-		Connection connection = null;
-		connection = cu.getConnection();
-		String sql = "SELECT * FROM IMDB_USER WHERE U_USERNAME = ?";
-		try {
-			PreparedStatement ps = connection.prepareStatement(sql);
-			ps.setString(1, username);
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				user = new User(rs.getInt("U_ID"), rs.getString("U_USERNAME"), rs.getString("U_PASSWORD"),
-						rs.getString("U_EMAIL"), rs.getString("U_FIRSTNAME"), rs.getString("U_LASTNAME"));
+		try (Connection connection = ConnectionUtil.getConnection()) {
+			String sql = "SELECT * FROM IMDB_USER WHERE U_USERNAME = ?";
+			try (PreparedStatement ps = connection.prepareStatement(sql)) {
+				ps.setString(1, username);
+				try (ResultSet rs = ps.executeQuery()) {
+					if (rs.next()) {
+						return new User(rs.getInt("U_ID"), rs.getString("U_USERNAME"), rs.getString("U_PASSWORD"),
+								rs.getString("U_EMAIL"), rs.getString("U_FIRSTNAME"), rs.getString("U_LASTNAME"));
+					}
+				}
 			}
-			System.out.println(username);
-			System.out.println(user);
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
 		}
-		return user;
+		return null;
 	}
+
+	
 
 	public ArrayList<User> getAllUsers() {
 		try (Connection connection = ConnectionUtil.getConnection()) {
