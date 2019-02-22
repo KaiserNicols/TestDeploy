@@ -56,6 +56,7 @@ public class UserServiceImpl implements UserService {
 					HttpSession session = request.getSession();
 					session.setAttribute("username", attempting.getUsername());
 					session.setAttribute("id", attempting.getId());
+					System.out.println("the users Id should be..." + session.getAttribute("id"));
 					return attempting;
 					}
 			}catch (JsonParseException e) {

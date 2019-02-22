@@ -10,8 +10,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ChartsComponent } from './charts/charts.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService, User } from './user.service';
+import { RecommendationService } from './recommendation.service';
+import { Recommendation } from './recommendation';
+
+import { GoogleChartsModule } from 'angular-google-charts';
 import { RecsService } from './recs.service';
 import { NavbarService } from './navbar.service';
 
@@ -23,14 +28,16 @@ import { NavbarService } from './navbar.service';
     ProfileComponent,
     NavbarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ChartsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GoogleChartsModule
     ],
   providers: [ UserService, User, RecsService, NavbarService ],
   bootstrap: [ AppComponent ]

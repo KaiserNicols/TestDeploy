@@ -14,13 +14,14 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-
 export class UserService {
   constructor(private http: HttpClient) { }
-  // private baseUrl: string = 'http://localhost:8080/Project2/rest/';
-  private baseUrl: string = 'http://54.145.242.129:8080/Project2/rest/'
+  //private baseUrl: string = 'http://localhost:8080/Project2/rest/';
+ private baseUrl: string = 'http://54.145.242.129:8080/Project2/rest/'
+currentUser: UserAttempt;
 
   loginUser(userAttempt: UserAttempt): Observable<UserAttempt> {
+    this.currentUser = userAttempt;
     return this.http.post<User>(this.baseUrl + "user", userAttempt);
   }
 
@@ -30,6 +31,10 @@ export class UserService {
 
   registerUser(userAttempt: User): Observable<User> {
     return this.http.put<User>(this.baseUrl + "user/register", userAttempt);
+  }
+
+  getCurrentUser() : UserAttempt {
+    return this.currentUser;
   }
 
 }
