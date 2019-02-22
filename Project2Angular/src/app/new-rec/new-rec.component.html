@@ -5,19 +5,20 @@
     <form #getRecForm="ngForm">
         <label for="date">Search by release year</label><br>
         <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="dateOptions" name="dateOptions" class="custom-control-input" [value]="true" [checked]="dateOptions" [(ngModel)]="dateOptions">
-            <label class="custom-control-label" for="dateOptions">Select year range</label>
+            <label class="custom-control-label" for="dateOptions">
+            <input type="radio" id="dateOptions" name="dateOptions" class="custom-control-input" value="A" [checked]="dateOptions" [(ngModel)]="dateOptions">
+            Select year range</label>
         </div>
         <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="dateOptions" name="dateOptions" class="custom-control-input" [value]="false" [checked]="!dateOptions" [(ngModel)]="dateOptions">
-            <label class="custom-control-label" for="dateOptions">Select specific year</label>
+            <label class="custom-control-label" for="dateOptions">
+            <input type="radio" id="dateOptions" name="dateOptions" class="custom-control-input" value="B" [checked]="!dateOptions" [(ngModel)]="dateOptions">
+            Select specific year</label>
         </div>
-        <div *ngIf="dateOptions">        
-            <input type="number" name="release" id="release" min="1900" max="2019" placeholder="1900" [(ngModel)]="releaseGreater">
-            <p>-</p>
+        <div *ngIf="dateOptions === 'A'">        
+            <input type="number" name="release" id="release" min="1900" max="2019" placeholder="1900 -" [(ngModel)]="releaseGreater">
             <input type="number" name="release" id="release" min="1900" max="2019" placeholder="2019" [(ngModel)]="releaseLower">
         </div>
-        <div *ngIf="!dateOptions">        
+        <div *ngIf="dateOptions === 'B'">        
             <input type="number" name="release" id="release" min="1900" max="2019" placeholder="Enter year" [(ngModel)]="releaseYear">
         </div>    
         <div class="form-group col-md">
