@@ -34,7 +34,7 @@
         <div class="form-group col-md">
             <label for="genre">Search by genre</label>
                 <select name="genre" id="genre" class="form-control" [(ngModel)]="selectGenre">
-                    <option value="" disabled>Choose a genre</option>
+                    <option value="" >Choose a genre</option>
                     <option [value]="genre.name" *ngFor = "let genre of genres" >{{genre.name}}</option>
                 </select>
         </div>
