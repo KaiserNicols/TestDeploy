@@ -36,7 +36,7 @@
     <div class="form-group col-md" *ngIf="recIsHidden">
         <h6>Your recommendation is:</h6>
         <h4>{{recTitle}}</h4>
-        <img source="recPosterURL" alt="Recommended film poster"></img>
+        <img source="recPosterURL" alt="Recommended film poster">
         <form #loginForm="ngForm">
             <div class="form-group col-md">
                 <button class="btn btn-primary" type="button" value="Like" (click)="submitGoodRec()">Love it!</button>

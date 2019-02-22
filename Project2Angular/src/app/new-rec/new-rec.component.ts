@@ -41,7 +41,7 @@ export class NewRecComponent implements OnInit {
     //user id, movie id, 1, date
   }
   submitBadRec(): void{
-    //user id, movie id, 1, date
+    //user id, movie id, 0, date
 
   }
   
