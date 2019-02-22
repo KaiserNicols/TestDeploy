@@ -76,8 +76,9 @@ export class NewRecComponent implements OnInit {
       data => {this.recommendation = data["results"];
                 console.log(data);
                 console.log(this.recommendation);
-                this.recTitle = this.recommendation["original_title"];
-                this.recPosterURL ="http://image.tmdb.org/t/p/w185/" + this.recommendation["poster_path"];
+                this.tempData = this.recommendation[Math.floor(Math.random() * 19-1)]
+                this.recTitle = this.tempData["original_title"];
+                this.recPosterURL ="http://image.tmdb.org/t/p/w185/" + this.tempData["poster_path"];
               }
               ,err => console.log(`Error: ${err}`)
     )
