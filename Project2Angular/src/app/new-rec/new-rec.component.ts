@@ -12,7 +12,9 @@ import { NavbarService } from '../navbar.service';
 export class NewRecComponent implements OnInit {
 
   title = "Get a Recommendation";
-  release: number;
+  releaseLower: number;
+  releaseGreater: number;
+  releaseYear: number;
   rating: number;
   selectActor: string;
   selectGenre: string;
@@ -47,7 +49,9 @@ export class NewRecComponent implements OnInit {
   
   getRec(): void{
     this.getAppend = "";
-    console.log(this.release);
+    console.log(this.releaseLower);
+    console.log(this.releaseGreater);
+    console.log(this.releaseYear);
     console.log(this.rating);
     console.log(this.selectActor);
     console.log(this.selectGenre)
@@ -87,7 +91,7 @@ export class NewRecComponent implements OnInit {
       data => {this.recommendation = data["results"];
                 console.log(data);
                 console.log(this.recommendation);
-                this.tempData = this.recommendation[Math.floor(Math.random() * this.recommendation.length-1)]
+                this.tempData = this.recommendation[Math.floor(Math.random() * this.recommendation.length+1)]
                 this.recTitle = this.tempData["original_title"];
                 this.recId = this.tempData["id"];
                 this.recPosterURL ="http://image.tmdb.org/t/p/w185" + this.tempData["poster_path"];
