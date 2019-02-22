@@ -16,6 +16,9 @@ export class NewRecComponent implements OnInit {
   rating: number;
   selectActor: string;
   selectGenre: string;
+  
+  recTitle: string;
+  recPosterURL: string;
 
   public actor: actors;
   public actors: actors[];
@@ -73,6 +76,8 @@ export class NewRecComponent implements OnInit {
       data => {this.recommendation = data["results"];
                 console.log(data);
                 console.log(this.recommendation);
+                this.recTitle = this.recommendation["original_title"];
+                this.recPosterURL ="http://image.tmdb.org/t/p/w185/" + this.recommendation["poster_path"];
               }
               ,err => console.log(`Error: ${err}`)
     )
