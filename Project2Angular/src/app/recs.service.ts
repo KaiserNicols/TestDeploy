@@ -21,7 +21,7 @@ export class RecsService {
     }
     return this.http.get<actors[]>("https://api.themoviedb.org/3/search/person?api_key=78e263a07ddcb03810133fc82756418f&query="+actor);
   }
-  getReccomendation(appendToURL: string){
+  getReccomendation(appendToURL: string): Observable<any[]>{
     return this.http.get<any[]>("https://api.themoviedb.org/3/discover/movie?api_key=78e263a07ddcb03810133fc82756418f&sort_by=popularity.desc&include_adult=false&include_video=false&page=1" + appendToURL);
   }
 }
