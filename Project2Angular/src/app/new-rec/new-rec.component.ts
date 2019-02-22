@@ -3,7 +3,6 @@ import {User, UserService} from '../user.service';
 import {Router} from '@angular/router';
 import { RecsService, genres, actors } from '../recs.service';
 import { NavbarService } from '../navbar.service';
-import { release } from 'os';
 
 @Component({
   selector: 'app-new-rec',
