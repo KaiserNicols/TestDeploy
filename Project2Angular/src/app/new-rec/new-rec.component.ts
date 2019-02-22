@@ -89,7 +89,8 @@ export class NewRecComponent implements OnInit {
                 this.tempData = this.recommendation[Math.floor(Math.random() * this.recommendation.length-1)]
                 this.recTitle = this.tempData["original_title"];
                 this.recId = this.tempData["id"];
-                this.recPosterURL ="http://image.tmdb.org/t/p/w185/" + this.tempData["poster_path"];
+                this.recPosterURL ="http://image.tmdb.org/t/p/w185" + this.tempData["poster_path"];
+                console.log(this.recPosterURL);
                 if (this.recIsHidden===false){
                   this.recIsHidden = true;}
               }
