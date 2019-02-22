@@ -63,9 +63,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 public class ConnectionUtil {
+	
+	private static final Logger logger = LogManager.getLogger(ConnectionUtil.class);
 	private static ConnectionUtil cu = null;
 	private static Properties prop = new Properties();
 	private ConnectionUtil() {
@@ -92,10 +98,15 @@ public class ConnectionUtil {
 					prop.getProperty("url"),
 					prop.getProperty("usr"),
 					prop.getProperty("pwd"));
-		} catch(Exception e) {
-			e.printStackTrace();
+		} catch (SQLException e) {
+			logger.fatal("Failed to obtain JDBC Connection: {}");
+			logger.fatal("SQL State: {}");
+			logger.fatal("Error Code: {}");
+			throw new RuntimeException(e);
+		} catch (ClassNotFoundException e) {
+			logger.fatal("Failed to load JDBC Driver: {}");
+			throw new RuntimeException(e);
 		}
-		
 		return connection;
 	}
 }
