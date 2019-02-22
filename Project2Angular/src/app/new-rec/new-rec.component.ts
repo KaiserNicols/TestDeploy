@@ -65,6 +65,7 @@ export class NewRecComponent implements OnInit {
     //     }
     //     ,err => console.log(`Error: ${err}`)
     //   )}
+    console.log(this.getAppend);
     this.recsService.getReccomendation(this.getAppend).subscribe(
       data => {this.recommendation = data["results"];
                 console.log(data);
