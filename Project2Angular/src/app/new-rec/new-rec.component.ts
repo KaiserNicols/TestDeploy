@@ -19,6 +19,7 @@ export class NewRecComponent implements OnInit {
   selectActor: string;
   selectGenre: string;
   selectDirector: string;
+  dateOptions: boolean;
   
   recTitle: string;
   recPosterURL: string;
