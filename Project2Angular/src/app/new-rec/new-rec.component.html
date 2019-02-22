@@ -15,7 +15,7 @@
             <label class="custom-control-label" for="customRadioInline1">Select date range</label>
         </div>
         <div class="form-group col-md custom-control custom-radio custom-control-inline">
-            <input type="radio" id="dateOptions" name="dateOptions" class="custom-control-input" [value]="false" [checked="!dateOptions" [(ngModel)]="dateOptions">
+            <input type="radio" id="dateOptions" name="dateOptions" class="custom-control-input" [value]="false" [checked]="!dateOptions" [(ngModel)]="dateOptions">
             <label class="custom-control-label" for="customRadioInline2">Select specific date</label>
         </div>
         <div class="form-group col-md" *ngIf="dateOptions">        
@@ -23,7 +23,7 @@
             <input type="number" name="release" id="release" max="2019" placeholder="2019" [(ngModel)]="releaseLower">
         </div>
         <div class="form-group col-md" *ngIf="!dateOptions">        
-            <input type="number" name="release" id="release" min="1900" max="2019" placeholder="1900-2019" [(ngModel)]="release">
+            <input type="number" name="release" id="release" min="1900" max="2019" placeholder="Enter year" [(ngModel)]="releaseYear">
         </div>    
         <div class="form-group col-md">
             <label for="rating">Search by user ratings</label>
