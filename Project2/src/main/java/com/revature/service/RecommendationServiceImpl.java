@@ -70,7 +70,9 @@ public class RecommendationServiceImpl implements RecommendationService{
 					logPlayer = mapper.readValue(request.getReader(), User.class);
 					newRec = mapper.readValue(request.getReader(), Recommendation.class);
 					final String username = logPlayer.getUsername();
-					int userId = logPlayer.getId();
+					User currentUser = new User();
+					currentUser = getUser(username);
+					final int userId = currentUser.getId();
 					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 					LocalDateTime now = LocalDateTime.now();
 					String nowString = now.toString();
