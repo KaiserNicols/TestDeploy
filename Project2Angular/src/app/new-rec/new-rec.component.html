@@ -10,32 +10,38 @@
                 <div><label class="checkbox-inline"><input type="checkbox" checked name="rating" class="form-control" value="PG-13">PG-13</label></div>
                 <div><label class="checkbox-inline"><input type="checkbox" checked name="rating" class="form-control" value="R">R</label></div> -->
         <!-- </div> -->
-        <div class="form-group col-md custom-control custom-radio custom-control-inline">
+        <label for="date">Search by release year</label>
+        <div class="custom-control custom-radio custom-control-inline">
             <input type="radio" id="dateOptions" name="dateOptions" class="custom-control-input" [value]="true" [checked]="dateOptions" [(ngModel)]="dateOptions">
-            <label class="custom-control-label" for="customRadioInline1">Select date range</label>
+            <label class="custom-control-label" for="dateOptions">Select year range</label>
         </div>
-        <div class="form-group col-md custom-control custom-radio custom-control-inline">
+        <div class="custom-control custom-radio custom-control-inline">
             <input type="radio" id="dateOptions" name="dateOptions" class="custom-control-input" [value]="false" [checked]="!dateOptions" [(ngModel)]="dateOptions">
-            <label class="custom-control-label" for="customRadioInline2">Select specific date</label>
+            <label class="custom-control-label" for="dateOptions">Select specific year</label>
         </div>
-        <div class="form-group col-md" *ngIf="dateOptions">        
-            <input type="number" name="release" id="release" min="1900" placeholder="1900" [(ngModel)]="releaseGreater">
-            <input type="number" name="release" id="release" max="2019" placeholder="2019" [(ngModel)]="releaseLower">
+        <div *ngIf="dateOptions">        
+            <input type="number" name="release" id="release" min="1900" max="2019" placeholder="1900" [(ngModel)]="releaseGreater">
+            <input type="number" name="release" id="release" min="1900" max="2019" placeholder="2019" [(ngModel)]="releaseLower">
         </div>
-        <div class="form-group col-md" *ngIf="!dateOptions">        
+        <div *ngIf="!dateOptions">        
             <input type="number" name="release" id="release" min="1900" max="2019" placeholder="Enter year" [(ngModel)]="releaseYear">
         </div>    
         <div class="form-group col-md">
             <label for="rating">Search by user ratings</label>
             <input type="number" name="rating" id="rating" min="0" max="10" placeholder="0-10" [(ngModel)]="rating">
         </div>
-        <div class="form-group col-md">
+        <div class="form-group col-sm">
             <label for="actor">Search by an Actor/Actress</label>
             <input type="text" name="actor" id="actor" placeholder="Enter name" [(ngModel)]="selectActor">
         </div>
+        <div class="form-group col-sm">
+                <label for="actor">Search by an Director</label>
+                <input type="text" name="director" id="director" placeholder="Enter name" [(ngModel)]="selectDirector">
+            </div>    
         <div class="form-group col-md">
             <label for="genre">Search by genre</label>
                 <select name="genre" id="genre" class="form-control" [(ngModel)]="selectGenre">
+                    <option value="" disabled>Choose a genre</option>
                     <option [value]="genre.name" *ngFor = "let genre of genres" >{{genre.name}}</option>
                 </select>
         </div>
