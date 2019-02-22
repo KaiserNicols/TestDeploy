@@ -55,7 +55,7 @@ export class NewRecComponent implements OnInit {
     // }
     if (this.selectGenre!=null){
       for (let i = 0; i < this.genres.length; i++)
-        if (this.selectGenre = this.genres[i].name){
+        if (this.selectGenre === this.genres[i].name){
           this.getAppend = this.getAppend + "&with_genres=" + this.genres[i].id}
     }
     // if (this.selectActor!=null){
