@@ -29,10 +29,10 @@
                 </select>
         </div>
         <div class="form-group col-md">
-            <button class="btn btn-primary" type="submit" value="Login" (submit)="getRec()">Login</button>
+            <button class="btn btn-primary" type="button" value="Login" (click)="getRec()">Login</button>
             <button class="btn btn-light" type="reset" value="Reset">Reset</button>
         </div>
-        {{selectGenre}}
-        {{recommendation | json}}
     </form>
 </div>
+<p>        {{selectGenre}}
+    {{recommendation | json}}</p>
