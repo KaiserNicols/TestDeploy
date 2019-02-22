@@ -33,7 +33,7 @@ export class NewRecComponent implements OnInit {
     public recsService: RecsService,
     public nav: NavbarService) { }
   
-  getRec(){
+  getRec(): void{
     /*
     * api get request order
     * https://api.themoviedb.org/3/discover/movie?api_key=78e263a07ddcb03810133fc82756418f&sort_by=popularity.desc&include_adult=false&include_video=false&page=1
@@ -50,11 +50,11 @@ export class NewRecComponent implements OnInit {
     // if (this.rating!=null){
     //   this.getAppend = this.getAppend + "&vote_average.gte=" + this.rating;
     // }
-    if (this.selectGenre!=null){
+    // if (this.selectGenre!=null){
       for (let i = 0; i < this.genres.length; i++)
         if (this.selectGenre = this.genres[i].name){
           this.getAppend = this.getAppend + "&with_genres=" + this.genres[i].id}
-    }
+    // }
     // if (this.selectActor!=null){
     //   this.recsService.getActor(this.selectActor).subscribe(
     //     data => { console.log(data);
