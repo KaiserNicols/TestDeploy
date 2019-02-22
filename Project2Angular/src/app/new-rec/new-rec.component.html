@@ -6,12 +6,10 @@
         <label for="date">Search by release year</label><br>
         <div class="custom-control custom-radio custom-control-inline">
             <label class="custom-control-label" for="dateOptions">
-            <input type="radio" id="dateOptions" name="dateOptions" class="custom-control-input" value="A" [checked]="dateOptions" [(ngModel)]="dateOptions">
+            <input type="radio" id="dateOptions" name="dateOptions" class="custom-control-input" value="A" [(ngModel)]="dateOptions">
             Select year range</label>
-        </div>
-        <div class="custom-control custom-radio custom-control-inline">
             <label class="custom-control-label" for="dateOptions">
-            <input type="radio" id="dateOptions" name="dateOptions" class="custom-control-input" value="B" [checked]="!dateOptions" [(ngModel)]="dateOptions">
+            <input type="radio" id="dateOptions" name="dateOptions" class="custom-control-input" value="B" [(ngModel)]="dateOptions">
             Select specific year</label>
         </div>
         <div *ngIf="dateOptions === 'A'">        
