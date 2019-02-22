@@ -18,6 +18,7 @@ export class NewRecComponent implements OnInit {
   rating: number;
   selectActor: string;
   selectGenre: string;
+  selectDirector: string;
   
   recTitle: string;
   recPosterURL: string;
@@ -27,6 +28,7 @@ export class NewRecComponent implements OnInit {
   public actor: actors;
   public actors: actors[];
   public actorId: number;
+  public directorId:number;
   public genre: genres;
   public genres: genres[];
   public getAppend: string;
@@ -82,10 +84,12 @@ export class NewRecComponent implements OnInit {
     //     this.tempData = data["results"];
     //     this.tempData = this.tempData[0];
     //     this.actorId = this.tempData["id"];
-    //     this.getAppend = this.getAppend + "&with_people=" + this.actorId;
+    //     this.getAppend = this.getAppend + "&with_cast=" + this.actorId;
     //     }
     //     ,err => console.log(`Error: ${err}`)
     //   )}
+
+    //director: "&with_cast=" + this.directorId;
     console.log(this.getAppend);
     this.recsService.getReccomendation(this.getAppend).subscribe(
       data => {this.recommendation = data["results"];
