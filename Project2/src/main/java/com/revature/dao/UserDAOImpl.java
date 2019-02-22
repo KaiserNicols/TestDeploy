@@ -278,6 +278,7 @@ public class UserDAOImpl implements UserDAO {
 	 * http://54.145.242.129:8080/Project2/rest/user/logout
 	 */
 	public void logout(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		System.out.println("invalidate?");
 		req.getSession().invalidate();
 
 	}

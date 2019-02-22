@@ -21,11 +21,12 @@ public class RecommendationServiceImpl implements RecommendationService{
 	@Override
 	public Object process(HttpServletRequest request, HttpServletResponse response) {
 		if (request.getMethod().equals("GET")) {
-			//A user can retrieve all of their recommended movies
+			//A user can retrieve all of their recommended movies"
 			//http://54.145.242.129:8080/Project2/rest/rec/all
 			if (request.getRequestURI().contains("all")) {
 				HttpSession session = request.getSession();
 				int id = (int) session.getAttribute("id");
+				System.out.println(id);
 				return getAllRecommendations(id);
 			}
 			//http://54.145.242.129:8080/Project2/rest/rec/entirelist
