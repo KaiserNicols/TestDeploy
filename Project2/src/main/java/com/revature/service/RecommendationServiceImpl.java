@@ -1,6 +1,8 @@
 package com.revature.service;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,13 +44,9 @@ public class RecommendationServiceImpl implements RecommendationService{
 		if (request.getMethod().equals("POST")) {
 			if (request.getRequestURI().contains("all")) {
 				User logPlayer = null;
-				System.out.println("is the POST");
 				try {
 					logPlayer = mapper.readValue(request.getReader(), User.class);
 					final String username = logPlayer.getUsername();
-					final String password = logPlayer.getPassword();
-					System.out.println(username);
-					System.out.println(password);
 					User currentUser = new User();
 					currentUser = getUser(username);
 					System.out.println(currentUser.getId());
@@ -64,9 +62,33 @@ public class RecommendationServiceImpl implements RecommendationService{
 					e.printStackTrace();
 				}
 			}
+			if (request.getRequestURI().contains("submit")) {
+				Recommendation newRec = null;
+				User logPlayer = null;
+				//http://54.145.242.129:8080/Project2/rest/rec/submit
+				try {
+					logPlayer = mapper.readValue(request.getReader(), User.class);
+					newRec = mapper.readValue(request.getReader(), Recommendation.class);
+					final String username = logPlayer.getUsername();
+					int userId = logPlayer.getId();
+					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+					LocalDateTime now = LocalDateTime.now();
+					String nowString = now.toString();
+					newRec.setId(userId);
+					newRec.setDate(nowString);
+					return insertRecommendation(newRec);
+				}catch (JsonParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JsonMappingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}			
+			}
 		}
-		
-		
 		return null;
 	}
 	
@@ -78,6 +100,9 @@ public class RecommendationServiceImpl implements RecommendationService{
 	}
 	public User getUser(String username) {
 		return UserDAOImpl.getUserDAO().getUser(username);
+	}
+	public Recommendation insertRecommendation(Recommendation recommendation) {
+		return RecommendationDAOImpl.getRecommendationDAO().insertRecommendation(recommendation);
 	}
 	
 
