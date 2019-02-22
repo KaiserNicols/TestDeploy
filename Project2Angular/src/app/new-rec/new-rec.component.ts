@@ -19,6 +19,8 @@ export class NewRecComponent implements OnInit {
   
   recTitle: string;
   recPosterURL: string;
+  recId: number;
+  recIsHidden: boolean = false;
 
   public actor: actors;
   public actors: actors[];
@@ -76,9 +78,12 @@ export class NewRecComponent implements OnInit {
       data => {this.recommendation = data["results"];
                 console.log(data);
                 console.log(this.recommendation);
-                this.tempData = this.recommendation[Math.floor(Math.random() * 19-1)]
+                this.tempData = this.recommendation[Math.floor(Math.random() * this.recommendation.length-1)]
                 this.recTitle = this.tempData["original_title"];
+                this.recId = this.tempData["id"];
                 this.recPosterURL ="http://image.tmdb.org/t/p/w185/" + this.tempData["poster_path"];
+                if (this.recIsHidden===false){
+                  this.recIsHidden = true;}
               }
               ,err => console.log(`Error: ${err}`)
     )
