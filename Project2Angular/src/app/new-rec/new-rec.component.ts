@@ -37,6 +37,14 @@ export class NewRecComponent implements OnInit {
     public recsService: RecsService,
     public nav: NavbarService) { }
   
+  submitGoodRec(): void{
+    //user id, movie id, 1, date
+  }
+  submitBadRec(): void{
+    //user id, movie id, 1, date
+
+  }
+  
   getRec(): void{
     console.log(this.release);
     console.log(this.rating);
