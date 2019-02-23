@@ -1,43 +1,36 @@
 <div class="form-group col-md">
     <h1>{{title}}</h1>
+    <h6>Use as many options as you want</h6>
 </div>
 <div class="container">
     <form #getRecForm="ngForm">
-        <!-- <div class="form-group col-md checkbox"> -->
-            <!-- <label for="rating">Rating</label> -->
-                <!-- <div><label class="checkbox-inline"><input type="checkbox" checked name="rating" class="form-control" value="G">G</label></div>
-                <div><label class="checkbox-inline"><input type="checkbox" checked name="rating" class="form-control" value="PG">PG</label></div>
-                <div><label class="checkbox-inline"><input type="checkbox" checked name="rating" class="form-control" value="PG-13">PG-13</label></div>
-                <div><label class="checkbox-inline"><input type="checkbox" checked name="rating" class="form-control" value="R">R</label></div> -->
-        <!-- </div> -->
-        <div class="form-group col-md custom-control custom-radio custom-control-inline">
-            <input type="radio" id="dateOptions" name="dateOptions" class="custom-control-input" [value]="true" [checked]="dateOptions" [(ngModel)]="dateOptions">
-            <label class="custom-control-label" for="customRadioInline1">Select date range</label>
+        <div class="form-group col-md">
+            <label for="release range">Search year range</label>
+            <input type="number" name="release" id="release" min="1900" max="2019" placeholder="1900 -" [(ngModel)]="releaseGreater">
+            <input type="number" name="release" id="release" min="1900" max="2019" placeholder="2019" [(ngModel)]="releaseLower">
         </div>
-        <div class="form-group col-md custom-control custom-radio custom-control-inline">
-            <input type="radio" id="dateOptions" name="dateOptions" class="custom-control-input" [value]="false" [checked]="!dateOptions" [(ngModel)]="dateOptions">
-            <label class="custom-control-label" for="customRadioInline2">Select specific date</label>
-        </div>
-        <div class="form-group col-md" *ngIf="dateOptions">        
-            <input type="number" name="release" id="release" min="1900" placeholder="1900" [(ngModel)]="releaseGreater">
-            <input type="number" name="release" id="release" max="2019" placeholder="2019" [(ngModel)]="releaseLower">
-        </div>
-        <div class="form-group col-md" *ngIf="!dateOptions">        
+        <div class="form-group col-md">
+            <label for="release range">Search specific year</label>
             <input type="number" name="release" id="release" min="1900" max="2019" placeholder="Enter year" [(ngModel)]="releaseYear">
-        </div>    
+        </div> 
         <div class="form-group col-md">
-            <label for="rating">Search by user ratings</label>
-            <input type="number" name="rating" id="rating" min="0" max="10" placeholder="0-10" [(ngModel)]="rating">
+            <label for="rating">Search by user ratings less than:</label>
+            <input type="number" name="rating" id="rating" min="0" max="10" placeholder="0-10" [(ngModel)]="ratingLower">
         </div>
         <div class="form-group col-md">
-            <label for="actor">Search by an Actor/Actress</label>
+            <label for="rating">Search by user ratings greater than:</label>
+            <input type="number" name="rating" id="rating" min="0" max="10" placeholder="0-10" [(ngModel)]="ratingGreater">
+        </div>
+        <div class="form-group col-md">
+            <label for="actor">Search by an Actor/Actress </label>
             <input type="text" name="actor" id="actor" placeholder="Enter name" [(ngModel)]="selectActor">
         </div>
         <div class="form-group col-md">
             <label for="genre">Search by genre</label>
-                <select name="genre" id="genre" class="form-control" [(ngModel)]="selectGenre">
-                    <option [value]="genre.name" *ngFor = "let genre of genres" >{{genre.name}}</option>
-                </select>
+            <select name="genre" id="genre" class="form-control" [(ngModel)]="selectGenre">
+                <option value="" >Choose a genre</option>
+                <option [value]="genre.name" *ngFor = "let genre of genres">{{genre.name}}</option>
+            </select>
         </div>
         <div class="form-group col-md">
             <button class="btn btn-primary" type="button" value="Submit" (click)="getRec()">Submit</button>
@@ -54,6 +47,10 @@
                 <button class="btn btn-dark" type="button" value="Dislike" (click)="submitBadRec()">Hate it!</button>
             </div>
         </form>
+    </div>
+    <div class="form-group col-md" *ngIf="badQuery">
+        <h4>Sorry, something broke</h4>
+        <p>That query didn't return any results.  Why not try another?</p>
     </div>
 </div>
 

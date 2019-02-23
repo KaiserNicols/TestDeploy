@@ -6,6 +6,7 @@ public class Recommendation {
 	private int movieId;
 	private boolean helpful;
 	private String date;
+	private String username;
 	
 	public Recommendation() {}
 	
@@ -16,6 +17,15 @@ public class Recommendation {
 		this.movieId = movieId;
 		this.helpful = helpful;
 		this.date = date;
+	}
+	public Recommendation(int id, int userId, int movieId, boolean helpful, String date, String username) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.movieId = movieId;
+		this.helpful = helpful;
+		this.date = date;
+		this.username = username;
 	}
 
 	public int getId() {
@@ -56,6 +66,14 @@ public class Recommendation {
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	@Override
