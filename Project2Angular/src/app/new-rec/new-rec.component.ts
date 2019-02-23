@@ -26,6 +26,7 @@ export class NewRecComponent implements OnInit {
   recId: number;
   recIsHidden: boolean = false;
   badQuery: boolean = false;
+  username = this.user.username;
 
   public actor: actors;
   public actors: actors[];
@@ -57,7 +58,7 @@ export class NewRecComponent implements OnInit {
     );
   }
   submitBadRec(): void{
-    this.submitResponse.username = this.user.username;
+    this.submitResponse.username = this.username;
     this.submitResponse.movieId = this.recId;
     this.submitResponse.helpful = 0;
     this.recsService.submitFeedback(this.submitResponse).subscribe(
