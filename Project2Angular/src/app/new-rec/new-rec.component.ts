@@ -115,7 +115,7 @@ export class NewRecComponent implements OnInit {
         this.tempData = this.tempData[0];
         console.log(this.tempData);
         this.actorId = this.tempData["id"];
-        console.log(this.actorId)
+        console.log(this.actorId);
         this.getAppend = this.getAppend + "&with_people=" + this.actorId;
         }
         ,err => console.log(`Error: ${err}`)
@@ -126,13 +126,12 @@ export class NewRecComponent implements OnInit {
           this.getAppend = this.getAppend + "&with_genres=" + this.genres[i].id}
     }
     console.log(this.getAppend);
-    console.log(this.getAppend);
     this.recsService.getReccomendation(this.getAppend).subscribe(
       data => {this.recommendation = data["results"];
                 console.log(data);
                 console.log(this.recommendation);
                 this.tempData = this.recommendation[Math.floor(Math.random() * this.recommendation.length+1)]
-                if(this.recommendation.includes("original_title")){
+                if(this.recommendation.includes("original_title")!=true){
                   this.recTitle = this.tempData["original_title"];
                   this.recId = this.tempData["id"];
                   this.recPosterURL ="http://image.tmdb.org/t/p/w342" + this.tempData["poster_path"];
@@ -140,8 +139,8 @@ export class NewRecComponent implements OnInit {
                   this.recIsHidden = true;
                 }
                 else{                 
-                   this.recIsHidden = false;
-                    this.badQuery = true;
+                  this.recIsHidden = false;
+                  this.badQuery = true;
                 }
               }
               ,err => console.log(`Error: ${err}`)
