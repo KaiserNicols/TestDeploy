@@ -116,7 +116,8 @@ export class NewRecComponent implements OnInit {
         console.log(this.tempData);
         this.actorId = this.tempData["id"];
         console.log(this.actorId);
-        this.getAppend = this.getAppend + "&with_people=" + this.actorId;
+        this.getAppend = this.getAppend + "&with_cast=" + this.actorId;
+        console.log(this.getAppend);
         }
         ,err => console.log(`Error: ${err}`)
       )}
