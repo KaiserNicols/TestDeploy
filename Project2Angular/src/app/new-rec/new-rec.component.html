@@ -4,20 +4,6 @@
 </div>
 <div class="container">
     <form #getRecForm="ngForm">
-        <!-- <label for="date">Search by release year</label><br> -->
-        <!-- <div class="form-group col-md" class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="dateOptionsRange" name="dateOptions" class="custom-control-input" value="A" [(ngModel)]="dateOptions">
-            <label class="custom-control-label" for="dateOptions">Select year range</label>
-            <input type="radio" id="dateOptionsSpecific" name="dateOptions" class="custom-control-input" value="B" [(ngModel)]="dateOptions">
-            <label class="custom-control-label" for="dateOptions">Select specific year</label> -->
-        <!-- </div>
-        <div *ngIf="dateOptions === 'A'">        
-            <input type="number" name="release" id="release" min="1900" max="2019" placeholder="1900 -" [(ngModel)]="releaseGreater">
-            <input type="number" name="release" id="release" min="1900" max="2019" placeholder="2019" [(ngModel)]="releaseLower">
-        </div>
-        <div *ngIf="dateOptions === 'B'">        
-            <input type="number" name="release" id="release" min="1900" max="2019" placeholder="Enter year" [(ngModel)]="releaseYear">
-        </div>     -->
         <div class="form-group col-md">
             <label for="release range">Search year range</label>
             <input type="number" name="release" id="release" min="1900" max="2019" placeholder="1900 -" [(ngModel)]="releaseGreater">
@@ -40,15 +26,11 @@
             <input type="text" name="actor" id="actor" placeholder="Enter name" [(ngModel)]="selectActor">
         </div>
         <div class="form-group col-md">
-                <label for="actor">Search by a Director </label>
-                <input type="text" name="director" id="director" placeholder="Enter name" [(ngModel)]="selectDirector">
-            </div>    
-        <div class="form-group col-md">
             <label for="genre">Search by genre</label>
-                <select name="genre" id="genre" class="form-control" [(ngModel)]="selectGenre">
-                    <option value="" >Choose a genre</option>
-                    <option [value]="genre.name" *ngFor = "let genre of genres">{{genre.name}}</option>
-                </select>
+            <select name="genre" id="genre" class="form-control" [(ngModel)]="selectGenre">
+                <option value="" >Choose a genre</option>
+                <option [value]="genre.name" *ngFor = "let genre of genres">{{genre.name}}</option>
+            </select>
         </div>
         <div class="form-group col-md">
             <button class="btn btn-primary" type="button" value="Submit" (click)="getRec()">Submit</button>
@@ -68,7 +50,7 @@
     </div>
     <div class="form-group col-md" *ngIf="badQuery">
         <h4>Sorry, something broke</h4>
-        <p>That query didn't return any results.  Why don't you try another?</p>
+        <p>That query didn't return any results.  Why not try another?</p>
     </div>
 </div>
 
