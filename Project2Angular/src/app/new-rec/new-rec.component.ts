@@ -21,7 +21,6 @@ export class NewRecComponent implements OnInit {
   selectGenre: string;
   selectDirector: string;
   dateOptions: string;
-  getUserName: UserAttempt;
   
   recTitle: string;
   recPosterURL: string;
@@ -38,13 +37,13 @@ export class NewRecComponent implements OnInit {
   public getAppend: string;
   public tempData: any;
   public recommendation: any[];
-x
+  public submitResponse: UserResponse;
+
   constructor(public userService: UserService,
     public user: User,
     public router: Router,
     public recsService: RecsService,
-    public nav: NavbarService,
-    public submitResponse: UserResponse) { }
+    public nav: NavbarService) { }
   
   submitGoodRec(): void{
     console.log(this.user.username);
@@ -60,8 +59,7 @@ x
     );
   }
   submitBadRec(): void{
-    this.getUserName = this.userService.getCurrentUser();
-    this.submitResponse.username = this.getUserName.username;
+    this.submitResponse.username = this.user.username;
     this.submitResponse.movieId = this.recId;
     this.submitResponse.helpful = 0;
     this.recsService.submitFeedback(this.submitResponse).subscribe(

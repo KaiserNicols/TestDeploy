@@ -26,8 +26,8 @@ export class RecsService {
   getReccomendation(appendToURL: string): Observable<any[]>{
     return this.http.get<any[]>("https://api.themoviedb.org/3/discover/movie?api_key=78e263a07ddcb03810133fc82756418f&sort_by=popularity.desc&include_adult=false&include_video=false&page=1" + appendToURL);
   }
-  submitFeedback(userFeedback: userResponse): Observable<userResponse>{
-    return this.http.post<userResponse>(this.baseUrl + "rec/submit", userFeedback);
+  submitFeedback(userFeedback: UserResponse): Observable<UserResponse>{
+    return this.http.post<UserResponse>(this.baseUrl + "rec/submit", userFeedback);
   }
 }
 
