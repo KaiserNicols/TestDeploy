@@ -67,16 +67,14 @@ public class RecommendationServiceImpl implements RecommendationService{
 				User logPlayer = null;
 				//http://54.145.242.129:8080/Project2/rest/rec/submit
 				try {
-					logPlayer = mapper.readValue(request.getReader(), User.class);
+					System.out.println("did it work here");
 					newRec = mapper.readValue(request.getReader(), Recommendation.class);
-					final String username = logPlayer.getUsername();
-					User currentUser = new User();
-					currentUser = getUser(username);
-					final int userId = currentUser.getId();
 					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 					LocalDateTime now = LocalDateTime.now();
 					String nowString = now.toString();
-					newRec.setId(userId);
+					logPlayer = getUser(newRec.getUsername());
+					
+					newRec.setId(logPlayer.getId());
 					newRec.setDate(nowString);
 					return insertRecommendation(newRec);
 				}catch (JsonParseException e) {
