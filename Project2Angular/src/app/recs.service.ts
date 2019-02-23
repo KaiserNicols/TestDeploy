@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { of, merge } from 'rxjs';
+import { mapTo, delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +27,7 @@ export class RecsService {
     return this.http.get<any[]>("https://api.themoviedb.org/3/search/person?api_key=78e263a07ddcb03810133fc82756418f&query="+ actor +"&page=1&include_adult=false");
   }
   getReccomendation(appendToURL: string): Observable<any[]>{
-    return this.http.get<any[]>("https://api.themoviedb.org/3/discover/movie?api_key=78e263a07ddcb03810133fc82756418f&sort_by=popularity.desc&include_adult=false&include_video=false&page=1" + appendToURL);
+   return this.http.get<any[]>("https://api.themoviedb.org/3/discover/movie?api_key=78e263a07ddcb03810133fc82756418f&sort_by=popularity.desc&include_adult=false&include_video=false&page=1" + appendToURL);
   }
   submitFeedback(userFeedback: UserResponse): Observable<UserResponse>{
     return this.http.post<UserResponse>(this.baseUrl, userFeedback);
