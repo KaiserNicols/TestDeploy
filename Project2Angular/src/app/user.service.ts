@@ -16,8 +16,8 @@ const httpOptions = {
 })
 export class UserService {
   constructor(private http: HttpClient) { }
-  //private baseUrl: string = 'http://localhost:8080/Project2/rest/';
- private baseUrl: string = 'http://54.145.242.129:8080/Project2/rest/'
+ // private baseUrl: string = 'http://localhost:8080/Project2/rest/';
+private baseUrl: string = 'http://54.145.242.129:8080/Project2/rest/'
 currentUser: UserAttempt;
 
   loginUser(userAttempt: UserAttempt): Observable<UserAttempt> {

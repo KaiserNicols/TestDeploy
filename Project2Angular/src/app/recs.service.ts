@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class RecsService {
 
-  private baseUrl: string = "http://54.145.242.129:8080/Project2/rest/rec/submit";
+ private baseUrl: string = "http://54.145.242.129:8080/Project2/rest/rec/submit";
+ //private baseUrl: string = "http://localhost:8080/Project2/rest/rec/submit";
 
   constructor(private http: HttpClient) { }
 
@@ -27,7 +28,7 @@ export class RecsService {
     return this.http.get<any[]>("https://api.themoviedb.org/3/discover/movie?api_key=78e263a07ddcb03810133fc82756418f&sort_by=popularity.desc&include_adult=false&include_video=false&page=1" + appendToURL);
   }
   submitFeedback(userFeedback: UserResponse): Observable<UserResponse>{
-    return this.http.post<UserResponse>(this.baseUrl + "rec/submit", userFeedback);
+    return this.http.post<UserResponse>(this.baseUrl, userFeedback);
   }
 }
 
