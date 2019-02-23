@@ -114,13 +114,13 @@ export class NewRecComponent implements OnInit {
         this.tempData = data["results"];
         this.tempData = this.tempData[0];
         console.log(this.tempData);
-        this.actorId = this.tempData["id"];
+        this.actorId = this.tempData["id"]
+        }),err => console.log(`Error: ${err}`)
+        ;
         console.log(this.actorId);
         this.getAppend = this.getAppend + "&with_cast=" + this.actorId;
         console.log(this.getAppend);
-        }
-        ,err => console.log(`Error: ${err}`)
-      )}
+      }
     if (this.selectGenre!=null){
       for (let i = 0; i < this.genres.length; i++)
         if (this.selectGenre === this.genres[i].name){
