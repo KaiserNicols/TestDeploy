@@ -15,7 +15,8 @@ export class NewRecComponent implements OnInit {
   releaseLower: number;
   releaseGreater: number;
   releaseYear: number;
-  rating: number;
+  ratingLower: number;
+  ratingGreater: number;
   selectActor: string;
   selectGenre: string;
   selectDirector: string;
@@ -46,7 +47,7 @@ export class NewRecComponent implements OnInit {
     public nav: NavbarService) { }
   
   submitGoodRec(): void{
-
+    console.log(this.user.username);
     this.submitResponse.username = this.user.username;
     this.submitResponse.movieId = this.recId;
     this.submitResponse.helpful = 1;
@@ -78,8 +79,10 @@ export class NewRecComponent implements OnInit {
     console.log(this.releaseLower);
     console.log(this.releaseGreater);
     console.log(this.releaseYear);
-    console.log(this.rating);
+    console.log(this.ratingLower);
+    console.log(this.ratingGreater);
     console.log(this.selectActor);
+    console.log(this.selectDirector);
     console.log(this.selectGenre);
     /*
     * api get request order

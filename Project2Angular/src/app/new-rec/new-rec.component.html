@@ -28,7 +28,11 @@
             <input type="number" name="release" id="release" min="1900" max="2019" placeholder="Enter year" [(ngModel)]="releaseYear">
         </div> 
         <div class="form-group col-md">
-            <label for="rating">Search by user ratings </label>
+            <label for="rating">Search by user ratings less than:</label>
+            <input type="number" name="rating" id="rating" min="0" max="10" placeholder="0-10" [(ngModel)]="rating">
+        </div>
+        <div class="form-group col-md">
+            <label for="rating">Search by user ratings greater than:</label>
             <input type="number" name="rating" id="rating" min="0" max="10" placeholder="0-10" [(ngModel)]="rating">
         </div>
         <div class="form-group col-md">
