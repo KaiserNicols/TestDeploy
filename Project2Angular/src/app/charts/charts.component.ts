@@ -48,6 +48,7 @@ export class ChartsComponent implements OnInit {
           console.log(this.userService.getCurrentUser());
           console.log(recommendations);
           this.personalRecommendations = recommendations;
+          console.log(this.personalRecommendations)
           this.setPersonalChartData();
           }
         );

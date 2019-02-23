@@ -24,6 +24,15 @@ export class RecsService {
   getReccomendation(appendToURL: string): Observable<any[]>{
     return this.http.get<any[]>("https://api.themoviedb.org/3/discover/movie?api_key=78e263a07ddcb03810133fc82756418f&sort_by=popularity.desc&include_adult=false&include_video=false&page=1" + appendToURL);
   }
+  getMovieIds(userRecommendations: any[]) {}
+
+  baseUrl= "https://api.themoviedb.org/3/movie/";
+  endUrl="?api_key=577da0848495397cdb9a1b657cfc5861&language=en-US";
+
+  sendMovieIds(movieId: any): Observable<any> {
+    return this.http.get<any>(this.baseUrl + movieId + this.endUrl)
+  }
+
 }
 
 export interface genres {

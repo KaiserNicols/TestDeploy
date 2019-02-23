@@ -14,18 +14,20 @@ export class LoginComponent implements OnInit{
 
     username: string;
     password: string;
+    Alert: boolean = false;
 
   login(): void {
     this.user.username = this.username;
     this.user.password = this.password;
     this.userService.loginUser(this.user).subscribe(
       response => {
-        //console.log(this.username, this.password);
-        //console.log(response);
-        if (response.username!=null) {this.router.navigate(['/past-recs']);}    
+        // console.log(this.username, this.password);
+        // console.log(response);
+        if (response!=null) {this.router.navigate(['/past-recs']);} 
+        else {this.show();}
       },
       (err: any) => console.log(`Error: $(err)`)
-    );
+    ); 
 
   }
 
@@ -33,10 +35,14 @@ export class LoginComponent implements OnInit{
               public user: User,
               public acceptedUser: User,
               public router: Router, 
-              public nav: NavbarService) { }
-
+              public nav: NavbarService) 
+              { this.Alert = false; }
+  show() {this.Alert = true; }
+  hide() {this.Alert = false; }
+  
   ngOnInit() {
     this.nav.hide();
+    this.hide();
   }
 
 
