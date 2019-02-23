@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User, UserService, UserAttempt} from '../user.service';
 import {Router} from '@angular/router';
-import { RecsService, genres, actors, userResponse } from '../recs.service';
+import { RecsService, genres, actors, UserResponse } from '../recs.service';
 import { NavbarService } from '../navbar.service';
 
 @Component({
@@ -38,13 +38,13 @@ export class NewRecComponent implements OnInit {
   public getAppend: string;
   public tempData: any;
   public recommendation: any[];
-  public submitResponse: userResponse;
-
+x
   constructor(public userService: UserService,
     public user: User,
     public router: Router,
     public recsService: RecsService,
-    public nav: NavbarService) { }
+    public nav: NavbarService,
+    public submitResponse: UserResponse) { }
   
   submitGoodRec(): void{
     console.log(this.user.username);
