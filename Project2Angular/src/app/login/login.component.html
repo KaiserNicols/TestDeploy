@@ -1,5 +1,8 @@
 <div class="container">
   <h2 class='text-center'>Login</h2>
+  <div class="alert alert-danger" role="alert" *ngIf="Alert">
+    Login failed. Please try again.
+  </div>
   <form #loginForm="ngForm">
     <div class="form-group col-md">
       <label for="username">Username</label>

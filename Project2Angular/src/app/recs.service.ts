@@ -32,6 +32,15 @@ export class RecsService {
   submitFeedback(userFeedback: UserResponse): Observable<UserResponse>{
     return this.http.post<UserResponse>(this.baseUrl, userFeedback);
   }
+
+  getMovieIds(userRecommendations: any[]) {}
+
+  startUrl= "https://api.themoviedb.org/3/movie/";
+  endUrl="?api_key=577da0848495397cdb9a1b657cfc5861&language=en-US";
+
+  sendMovieIds(movieId: any): Observable<any> {
+    return this.http.get<any>(this.startUrl + movieId + this.endUrl)
+  }
 }
 
 export interface genres {
