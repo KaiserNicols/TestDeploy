@@ -131,7 +131,7 @@ export class NewRecComponent implements OnInit {
       data => {this.recommendation = data["results"];
                 console.log(data);
                 console.log("recommendation " +this.recommendation);
-                this.tempData = this.recommendation[Math.floor(Math.random() * this.recommendation.length+1)]
+                this.tempData = this.recommendation[Math.floor(Math.random() * this.recommendation.length)]
                 if(this.recommendation.includes("original_title")!=true){
                   this.recTitle = this.tempData["original_title"];
                   this.recId = this.tempData["id"];

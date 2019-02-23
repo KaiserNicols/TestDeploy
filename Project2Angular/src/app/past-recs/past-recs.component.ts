@@ -43,10 +43,12 @@ export class PastRecsComponent implements OnInit {
     }
     console.log(this.movieIds)
     for (let i=0; i<this.movieIds.length; i++) {
-      this.movieDetails.push(this.recsService.sendMovieIds(this.movieIds[i])
-      .subscribe(response=> this.movieId));
+     this.recsService.sendMovieIds(this.movieIds[i])
+      .subscribe(response=> this.movieDetails.push(response), 
+      error => console.log(error));
+      }
       console.log(this.movieDetails)
-    }
+      console.log(this.movieDetails[0].title)
   }
   
   
