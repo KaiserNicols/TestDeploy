@@ -108,38 +108,30 @@ export class NewRecComponent implements OnInit {
     if (this.ratingLower!=null){
       this.getAppend = this.getAppend + "&vote_average.gte=" + this.ratingLower;
     }
-
     if (this.selectActor!=null){
       this.recsService.getActor(this.selectActor).subscribe(
         data => { console.log(data);
         this.tempData = data["results"];
         this.tempData = this.tempData[0];
         console.log(this.tempData);
-        this.actorId = this.tempData["id"]
-        }),err => console.log(`Error: ${err}`)
-        ;
+        this.actorId = this.tempData["id"];
         console.log(this.actorId);
         this.getAppend = this.getAppend + "&with_cast=" + this.actorId;
         console.log(this.getAppend);
-      }
-
-
-    
+        }
+        ,err => console.log(`Error: ${err}`)
+      )}
     if (this.selectGenre!=null){
       for (let i = 0; i < this.genres.length; i++)
         if (this.selectGenre === this.genres[i].name){
           this.getAppend = this.getAppend + "&with_genres=" + this.genres[i].id}
-          console.log("within the selectGenre!=null");
-          console.log(this.getAppend);
     }
-    console.log("Total append?");
     console.log(this.getAppend);
     this.recsService.getReccomendation(this.getAppend).subscribe(
       data => {this.recommendation = data["results"];
-                console.log("Within the subscription" + this.getAppend);
                 console.log(data);
-                console.log("recommendation " +this.recommendation);
-                this.tempData = this.recommendation[Math.floor(Math.random() * this.recommendation.length+1)]
+                console.log(this.recommendation);
+                this.tempData = this.recommendation[Math.floor(Math.random() * this.recommendation.length)]
                 if(this.recommendation.includes("original_title")!=true){
                   this.recTitle = this.tempData["original_title"];
                   this.recId = this.tempData["id"];
