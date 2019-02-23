@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import { NavbarService } from '../navbar.service';
 import { RecommendationService } from '../recommendation.service';
 import { Recommendation } from '../recommendation';
-import { RecsService } from '../recs.service';
+import { RecsService, MovieDetails } from '../recs.service';
 
 @Component({
   selector: 'app-past-recs',
@@ -19,7 +19,7 @@ export class PastRecsComponent implements OnInit {
     userRecommendations: Recommendation[] = [];
     movieId: any;
     movieIds: number[] = [];
-    movieDetails: any[] = [];
+    movieDetails: MovieDetails[];
 
   getRecommendations(): void {
     this.recommendationService.getRecommendations(this.user)
