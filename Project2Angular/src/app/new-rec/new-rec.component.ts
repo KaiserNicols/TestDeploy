@@ -37,7 +37,8 @@ export class NewRecComponent implements OnInit {
   public getAppend: string;
   public tempData: any;
   public recommendation: any[];
-  public submitResponse: UserResponse;
+  public submitResponse: UserResponse = 
+    <UserResponse>{};
 
   constructor(public userService: UserService,
     public user: User,
