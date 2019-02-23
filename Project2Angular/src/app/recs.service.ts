@@ -41,7 +41,7 @@ export interface actors {
   name: string;
 }
 
-export class userResponse {
+export interface userResponse {
   username: string;
   movieId: number;
   helpful: number;

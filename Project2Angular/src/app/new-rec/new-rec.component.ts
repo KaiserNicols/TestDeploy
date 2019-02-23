@@ -36,13 +36,13 @@ export class NewRecComponent implements OnInit {
   public getAppend: string;
   public tempData: any;
   public recommendation: any[];
+  public submitResponse: userResponse;
 
   constructor(public userService: UserService,
     public user: User,
     public router: Router,
     public recsService: RecsService,
-    public nav: NavbarService,
-    public submitResponse: userResponse) { }
+    public nav: NavbarService) { }
   
   submitGoodRec(): void{
     this.submitResponse.username = this.user.username;
