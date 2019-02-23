@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {User, UserService} from '../user.service';
+import {User, UserService, UserAttempt} from '../user.service';
 import {Router} from '@angular/router';
 import { RecsService, genres, actors, userResponse } from '../recs.service';
 import { NavbarService } from '../navbar.service';
@@ -20,13 +20,13 @@ export class NewRecComponent implements OnInit {
   selectGenre: string;
   selectDirector: string;
   dateOptions: string;
+  getUserName: UserAttempt;
   
   recTitle: string;
   recPosterURL: string;
   recId: number;
   recIsHidden: boolean = false;
   badQuery: boolean = false;
-  username = this.user.username;
 
   public actor: actors;
   public actors: actors[];
@@ -46,6 +46,7 @@ export class NewRecComponent implements OnInit {
     public nav: NavbarService) { }
   
   submitGoodRec(): void{
+
     this.submitResponse.username = this.user.username;
     this.submitResponse.movieId = this.recId;
     this.submitResponse.helpful = 1;
@@ -58,7 +59,8 @@ export class NewRecComponent implements OnInit {
     );
   }
   submitBadRec(): void{
-    this.submitResponse.username = this.username;
+    this.getUserName = this.userService.getCurrentUser();
+    this.submitResponse.username = this.getUserName.username;
     this.submitResponse.movieId = this.recId;
     this.submitResponse.helpful = 0;
     this.recsService.submitFeedback(this.submitResponse).subscribe(
@@ -73,7 +75,6 @@ export class NewRecComponent implements OnInit {
   getRec(): void{
     this.getAppend = "";
     this.badQuery = false;
-    this.recIsHidden = false;
     console.log(this.releaseLower);
     console.log(this.releaseGreater);
     console.log(this.releaseYear);
@@ -125,6 +126,7 @@ export class NewRecComponent implements OnInit {
                 this.recPosterURL ="http://image.tmdb.org/t/p/w342" + this.tempData["poster_path"];
                 console.log(this.recPosterURL);
                 if (this.recTitle = undefined){
+                  this.recIsHidden = false;
                   this.badQuery = true;}
                 else{
                   this.recIsHidden = true;}
