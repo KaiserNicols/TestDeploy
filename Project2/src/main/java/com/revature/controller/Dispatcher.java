@@ -3,7 +3,6 @@ package com.revature.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.revature.service.FinalQuery;
 import com.revature.service.RecommendationService;
 import com.revature.service.RecommendationServiceImpl;
 import com.revature.service.UserService;
@@ -15,7 +14,6 @@ public class Dispatcher {
 	
 	private static final UserService userService = new UserServiceImpl();
 	private static final RecommendationService recService = new RecommendationServiceImpl();
-	private static final FinalQuery finalQuery = new FinalQuery();
 
 	public static Object process(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -25,10 +23,7 @@ public class Dispatcher {
 		}
 		else if (request.getRequestURI().contains("rec")) {
 			return recService.process(request, response);
-		}else if (request.getRequestURI().contains("query")) {
-			return finalQuery.process(request, response);
-		}
-				else 
+		}else 
 			return "Not yet implemented";
 		
 	}
