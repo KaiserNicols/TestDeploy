@@ -1,33 +1,41 @@
 <div class="form-group col-md">
     <h1>{{title}}</h1>
+    <h6>Use as many options as you want</h6>
 </div>
 <div class="container">
     <form #getRecForm="ngForm">
-        <label for="date">Search by release year</label><br>
-        <div class="custom-control custom-radio custom-control-inline">
-            <label class="custom-control-label" for="dateOptions">
-            <input type="radio" id="dateOptions" name="dateOptions" class="custom-control-input" value="A" [(ngModel)]="dateOptions">
-            Select year range</label>
-            <label class="custom-control-label" for="dateOptions">
-            <input type="radio" id="dateOptions" name="dateOptions" class="custom-control-input" value="B" [(ngModel)]="dateOptions">
-            Select specific year</label>
-        </div>
+        <!-- <label for="date">Search by release year</label><br> -->
+        <!-- <div class="form-group col-md" class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="dateOptionsRange" name="dateOptions" class="custom-control-input" value="A" [(ngModel)]="dateOptions">
+            <label class="custom-control-label" for="dateOptions">Select year range</label>
+            <input type="radio" id="dateOptionsSpecific" name="dateOptions" class="custom-control-input" value="B" [(ngModel)]="dateOptions">
+            <label class="custom-control-label" for="dateOptions">Select specific year</label> -->
+        <!-- </div>
         <div *ngIf="dateOptions === 'A'">        
             <input type="number" name="release" id="release" min="1900" max="2019" placeholder="1900 -" [(ngModel)]="releaseGreater">
             <input type="number" name="release" id="release" min="1900" max="2019" placeholder="2019" [(ngModel)]="releaseLower">
         </div>
         <div *ngIf="dateOptions === 'B'">        
             <input type="number" name="release" id="release" min="1900" max="2019" placeholder="Enter year" [(ngModel)]="releaseYear">
-        </div>    
+        </div>     -->
+        <div class="form-group col-md">
+            <label for="release range">Search year range</label>
+            <input type="number" name="release" id="release" min="1900" max="2019" placeholder="1900 -" [(ngModel)]="releaseGreater">
+            <input type="number" name="release" id="release" min="1900" max="2019" placeholder="2019" [(ngModel)]="releaseLower">
+        </div>
+        <div class="form-group col-md">
+            <label for="release range">Search specific year</label>
+            <input type="number" name="release" id="release" min="1900" max="2019" placeholder="Enter year" [(ngModel)]="releaseYear">
+        </div> 
         <div class="form-group col-md">
             <label for="rating">Search by user ratings </label>
             <input type="number" name="rating" id="rating" min="0" max="10" placeholder="0-10" [(ngModel)]="rating">
         </div>
-        <div class="form-group col-sm">
+        <div class="form-group col-md">
             <label for="actor">Search by an Actor/Actress </label>
             <input type="text" name="actor" id="actor" placeholder="Enter name" [(ngModel)]="selectActor">
         </div>
-        <div class="form-group col-sm">
+        <div class="form-group col-md">
                 <label for="actor">Search by a Director </label>
                 <input type="text" name="director" id="director" placeholder="Enter name" [(ngModel)]="selectDirector">
             </div>    
@@ -35,7 +43,7 @@
             <label for="genre">Search by genre</label>
                 <select name="genre" id="genre" class="form-control" [(ngModel)]="selectGenre">
                     <option value="" >Choose a genre</option>
-                    <option [value]="genre.name" *ngFor = "let genre of genres" >{{genre.name}}</option>
+                    <option [value]="genre.name" *ngFor = "let genre of genres">{{genre.name}}</option>
                 </select>
         </div>
         <div class="form-group col-md">
@@ -53,6 +61,10 @@
                 <button class="btn btn-dark" type="button" value="Dislike" (click)="submitBadRec()">Hate it!</button>
             </div>
         </form>
+    </div>
+    <div class="form-group col-md" *ngIf="badQuery">
+        <h4>Sorry, something broke</h4>
+        <p>That query didn't return any results.  Why don't you try another?</p>
     </div>
 </div>
 

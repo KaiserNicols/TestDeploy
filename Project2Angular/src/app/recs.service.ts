@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class RecsService {
 
+  private baseUrl: string = "/http://54.145.242.129:8080/Project2/rest/";
+
   constructor(private http: HttpClient) { }
 
   getGenres(): Observable<genres[]> {
@@ -24,6 +26,9 @@ export class RecsService {
   getReccomendation(appendToURL: string): Observable<any[]>{
     return this.http.get<any[]>("https://api.themoviedb.org/3/discover/movie?api_key=78e263a07ddcb03810133fc82756418f&sort_by=popularity.desc&include_adult=false&include_video=false&page=1" + appendToURL);
   }
+  submitFeedback(userFeedback: userResponse): Observable<userResponse>{
+    return this.http.post<userResponse>(this.baseUrl + "rec/submit", userFeedback);
+  }
 }
 
 export interface genres {
@@ -34,4 +39,10 @@ export interface genres {
 export interface actors {
   id: number;
   name: string;
+}
+
+export interface userResponse {
+  username: string;
+  movieId: number;
+  helpful: number;
 }

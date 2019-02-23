@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User, UserService} from '../user.service';
 import {Router} from '@angular/router';
-import { RecsService, genres, actors } from '../recs.service';
+import { RecsService, genres, actors, userResponse } from '../recs.service';
 import { NavbarService } from '../navbar.service';
 
 @Component({
@@ -25,6 +25,7 @@ export class NewRecComponent implements OnInit {
   recPosterURL: string;
   recId: number;
   recIsHidden: boolean = false;
+  badQuery: boolean = false;
 
   public actor: actors;
   public actors: actors[];
@@ -40,24 +41,44 @@ export class NewRecComponent implements OnInit {
     public user: User,
     public router: Router,
     public recsService: RecsService,
-    public nav: NavbarService) { }
+    public nav: NavbarService,
+    public submitResponse: userResponse) { }
   
   submitGoodRec(): void{
-    //user id, movie id, 1, date
+    this.submitResponse.username = this.user.username;
+    this.submitResponse.movieId = this.recId;
+    this.submitResponse.helpful = 1;
+    this.recsService.submitFeedback(this.submitResponse).subscribe(
+      data => {
+        console.log(data);
+        if (data!=null) {this.router.navigate(['/past-recs']);} 
+      },
+      (err: any) => console.log(`Error: $(err)`)
+    );
   }
   submitBadRec(): void{
-    //user id, movie id, 0, date
-
+    this.submitResponse.username = this.user.username;
+    this.submitResponse.movieId = this.recId;
+    this.submitResponse.helpful = 0;
+    this.recsService.submitFeedback(this.submitResponse).subscribe(
+      data => {
+        console.log(data);
+        if (data!=null) {this.router.navigate(['/past-recs']);} 
+      },
+      (err: any) => console.log(`Error: $(err)`)
+    );
   }
   
   getRec(): void{
     this.getAppend = "";
+    this.badQuery = false;
+    this.recIsHidden = false;
     console.log(this.releaseLower);
     console.log(this.releaseGreater);
     console.log(this.releaseYear);
     console.log(this.rating);
     console.log(this.selectActor);
-    console.log(this.selectGenre)
+    console.log(this.selectGenre);
     /*
     * api get request order
     * https://api.themoviedb.org/3/discover/movie?api_key=78e263a07ddcb03810133fc82756418f&sort_by=popularity.desc&include_adult=false&include_video=false&page=1
@@ -102,7 +123,9 @@ export class NewRecComponent implements OnInit {
                 // this.recPosterURL ="http://image.tmdb.org/t/p/w185" + this.tempData["poster_path"];
                 this.recPosterURL ="http://image.tmdb.org/t/p/w342" + this.tempData["poster_path"];
                 console.log(this.recPosterURL);
-                if (this.recIsHidden===false){
+                if (this.recTitle = undefined){
+                  this.badQuery = true;}
+                else{
                   this.recIsHidden = true;}
               }
               ,err => console.log(`Error: ${err}`)
