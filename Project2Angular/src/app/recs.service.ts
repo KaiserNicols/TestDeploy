@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class RecsService {
 
-  private baseUrl: string = "/http://54.145.242.129:8080/Project2/rest/";
+  private baseUrl: string = "http://54.145.242.129:8080/Project2/rest/rec/submit";
 
   constructor(private http: HttpClient) { }
 
