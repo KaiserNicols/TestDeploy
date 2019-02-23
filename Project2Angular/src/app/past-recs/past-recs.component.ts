@@ -19,7 +19,7 @@ export class PastRecsComponent implements OnInit {
     userRecommendations: Recommendation[] = [];
     movieId: any;
     movieIds: number[] = [];
-    movieDetails: MovieDetails[];
+    movieDetails: MovieDetails[] = [];
 
   getRecommendations(): void {
     this.recommendationService.getRecommendations(this.user)
