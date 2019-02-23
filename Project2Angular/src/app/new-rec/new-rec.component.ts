@@ -130,7 +130,11 @@ export class NewRecComponent implements OnInit {
     this.recsService.getReccomendation(this.getAppend).subscribe(
       data => {this.recommendation = data["results"];
                 console.log(data);
+<<<<<<< HEAD
                 console.log("recommendation " +this.recommendation);
+=======
+                console.log(this.recommendation);
+>>>>>>> 14c2d6b83a18f1aef95085b08e65eefc780dec51
                 this.tempData = this.recommendation[Math.floor(Math.random() * this.recommendation.length)]
                 if(this.recommendation.includes("original_title")!=true){
                   this.recTitle = this.tempData["original_title"];
