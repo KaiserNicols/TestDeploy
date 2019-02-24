@@ -143,6 +143,7 @@ export class NewRecComponent implements OnInit {
                   this.recPosterURL ="http://image.tmdb.org/t/p/w342" + this.tempData["poster_path"];
                   console.log(this.recPosterURL);
                   this.showRec = true;
+                  this.badQuery = false;
                 }
                 else{                 
                   this.showRec = false;
