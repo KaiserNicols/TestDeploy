@@ -25,8 +25,6 @@ public interface UserDAO {
 	public boolean revokeDBPermissions(String username);
 	
 	public String hashPassword(String username, String password);
-	
-	//Kale: Adding the attemptAuthentication() method
 	public User attemptAuthentication(String username, String password);
 
 }
