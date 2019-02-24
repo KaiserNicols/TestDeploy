@@ -47,14 +47,14 @@ export class NewRecComponent implements OnInit {
     public nav: NavbarService) { }
   
   submitGoodRec(): void{
-    console.log(this.user.username);
+    //console.log(this.user.username);
     this.submitResponse.username = this.user.username;
     this.submitResponse.movieId = this.recId;
     this.submitResponse.helpful = 1;
-    console.log(this.submitResponse);
+    //console.log(this.submitResponse);
     this.recsService.submitFeedback(this.submitResponse).subscribe(
       data => {
-        console.log(data);
+        //console.log(data);
         if (data!=null) {this.router.navigate(['/charts']);} 
       },
       (err: any) => console.log(`Error: $(err)`)
@@ -64,10 +64,10 @@ export class NewRecComponent implements OnInit {
     this.submitResponse.username = this.user.username;
     this.submitResponse.movieId = this.recId;
     this.submitResponse.helpful = 0;
-    console.log(this.submitResponse);
+    //console.log(this.submitResponse);
     this.recsService.submitFeedback(this.submitResponse).subscribe(
       data => {
-        console.log(data);
+        //console.log(data);
         if (data!=null) {this.router.navigate(['/charts']);} 
       },
       (err: any) => console.log(`Error: $(err)`)
@@ -75,17 +75,17 @@ export class NewRecComponent implements OnInit {
   }
   
   getRec(): void{
-    console.log("this.getAppend = " + this.getAppend);
+    //console.log("this.getAppend = " + this.getAppend);
     this.getAppend = "";
     this.badQuery = false;
-    console.log(this.releaseLower);
-    console.log(this.releaseGreater);
-    console.log(this.releaseYear);
-    console.log(this.ratingLower);
-    console.log(this.ratingGreater);
-    console.log(this.selectActor);
-    console.log(this.selectDirector);
-    console.log(this.selectGenre);
+    // console.log(this.releaseLower);
+    // console.log(this.releaseGreater);
+    // console.log(this.releaseYear);
+    // console.log(this.ratingLower);
+    // console.log(this.ratingGreater);
+    // console.log(this.selectActor);
+    // console.log(this.selectDirector);
+    // console.log(this.selectGenre);
     /*
     * api get request order
     * https://api.themoviedb.org/3/discover/movie?api_key=78e263a07ddcb03810133fc82756418f&sort_by=popularity.desc&include_adult=false&include_video=false&page=1
@@ -99,7 +99,6 @@ export class NewRecComponent implements OnInit {
     */
     if (this.releaseYear!=null){
       this.getAppend = this.getAppend + "&primary_release_year=" + this.releaseYear;
-      console.log(this.releaseYear);
     }
     if (this.releaseGreater!=null){
       this.getAppend = this.getAppend + "&release_date.gte=" + this.releaseGreater;
@@ -115,15 +114,16 @@ export class NewRecComponent implements OnInit {
     }
     if (this.selectActor!=null){
       this.recsService.getActor(this.selectActor).subscribe(
-        data => { console.log(data);
+        data => { 
+          //console.log(data);
         this.tempData = data["results"];
         this.tempData = this.tempData[0];
-        console.log(this.tempData);
+        //console.log(this.tempData);
         this.actorId = this.tempData["id"]
         }),err => console.log(`Error: ${err}`) ;
-        console.log(this.actorId);
+        //console.log(this.actorId);
         this.getAppend = this.getAppend + "&with_cast=" + this.actorId;
-        console.log(this.getAppend);
+        //console.log(this.getAppend);
       }
 
     if (this.selectGenre!=null){
@@ -131,27 +131,27 @@ export class NewRecComponent implements OnInit {
         if (this.selectGenre === this.genres[i].name){
           this.getAppend = this.getAppend + "&with_genres=" + this.genres[i].id}
     }
-    console.log(this.getAppend);
+    //console.log(this.getAppend);
     this.recsService.getReccomendation(this.getAppend).subscribe(
       data => {this.recommendation = data["results"];
                 if(this.recommendation.length > 0){
                   this.failRecCounter = 0;
-                  console.log(data);
-                  console.log(this.recommendation);
+                  //console.log(data);
+                  //console.log(this.recommendation);
                   let randomNumber = Math.floor(Math.random() * this.recommendation.length)
-                  console.log(randomNumber);
+                  //console.log(randomNumber);
                   this.tempData = this.recommendation[randomNumber];
                   this.recTitle = this.tempData["original_title"];
                   this.recId = this.tempData["id"];
                   this.recPosterURL ="http://image.tmdb.org/t/p/w342" + this.tempData["poster_path"];
-                  console.log(this.recPosterURL);
+                  //console.log(this.recPosterURL);
                   this.showRec = true;
                   this.badQuery = false;
                 }
                 else{    
                   if (this.failRecCounter < 1){
                     this.failRecCounter++;
-                    console.log("failCounter incrememnted");
+                    //console.log("failCounter incrememnted");
                     this.getRec();
                   }  else{
                     this.showRec = false;
@@ -171,8 +171,8 @@ export class NewRecComponent implements OnInit {
     this.recsService.getGenres().subscribe(
       data => { this.genres = data["genres"];
            this.genre = this.genres[0];
-            console.log(this.genre["name"]);
-            console.log(this.genres);
+            //console.log(this.genre["name"]);
+            //console.log(this.genres);
             
           }
           ,err => console.log(`Error: ${err}`)
