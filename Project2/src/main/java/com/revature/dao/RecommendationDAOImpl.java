@@ -38,6 +38,7 @@ public class RecommendationDAOImpl implements RecommendationDAO {
 				if (ps.executeUpdate() != 1) {
 					throw new SQLException();
 				}
+				System.out.println(getRecommendation(recommendation.getUserId(), recommendation.getMovieId(), recommendation.getDate()));
 				return getRecommendation(recommendation.getUserId(), recommendation.getMovieId(), recommendation.getDate());
 			}
 		} catch (SQLException e) {

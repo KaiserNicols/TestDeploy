@@ -33,6 +33,7 @@ public class RecommendationServiceImpl implements RecommendationService{
 				HttpSession session = request.getSession();
 				int id = (int) session.getAttribute("id");
 				System.out.println(id);
+				System.out.println("About to get user's recs");
 				return getAllRecommendations(id);
 			}
 			//http://54.145.242.129:8080/Project2/rest/rec/entirelist
@@ -69,6 +70,7 @@ public class RecommendationServiceImpl implements RecommendationService{
 				try {
 					System.out.println("did it work here");
 					newRec = mapper.readValue(request.getReader(), Recommendation.class);
+					System.out.println(newRec);
 					DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 					LocalDateTime now = LocalDateTime.now();
 					String nowString = now.toString();
@@ -76,7 +78,7 @@ public class RecommendationServiceImpl implements RecommendationService{
 					System.out.println("newREc username:" + newRec.getUsername());
 					System.out.println(logPlayer);
 					System.out.println(newRec);
-					newRec.setId(logPlayer.getId());
+					newRec.setUserId(logPlayer.getId());
 					newRec.setDate(nowString);
 					System.out.println(newRec);
 					return insertRecommendation(newRec);
