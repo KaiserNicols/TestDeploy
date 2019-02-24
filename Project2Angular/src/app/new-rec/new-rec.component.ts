@@ -132,7 +132,7 @@ export class NewRecComponent implements OnInit {
     console.log(this.getAppend);
     this.recsService.getReccomendation(this.getAppend).subscribe(
       data => {this.recommendation = data["results"];
-                if(this.recommendation.length === 0){
+                if(this.recommendation.length > 0){
                   console.log(data);
                   console.log(this.recommendation);
                   let randomNumber = Math.floor(Math.random() * this.recommendation.length)
