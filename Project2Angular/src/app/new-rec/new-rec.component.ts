@@ -99,6 +99,7 @@ export class NewRecComponent implements OnInit {
     */
     if (this.releaseYear!=null){
       this.getAppend = this.getAppend + "&primary_release_year=" + this.releaseYear;
+      console.log(this.releaseYear);
     }
     if (this.releaseGreater!=null){
       this.getAppend = this.getAppend + "&release_date.gte=" + this.releaseGreater;
