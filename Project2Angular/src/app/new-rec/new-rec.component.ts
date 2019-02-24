@@ -132,12 +132,12 @@ export class NewRecComponent implements OnInit {
     console.log(this.getAppend);
     this.recsService.getReccomendation(this.getAppend).subscribe(
       data => {this.recommendation = data["results"];
-                console.log(data);
-                console.log(this.recommendation);
-                let randomNumber = Math.floor(Math.random() * this.recommendation.length)
-                console.log(randomNumber);
-                this.tempData = this.recommendation[randomNumber];
                 if(this.recommendation.includes("original_title")!=true){
+                  console.log(data);
+                  console.log(this.recommendation);
+                  let randomNumber = Math.floor(Math.random() * this.recommendation.length)
+                  console.log(randomNumber);
+                  this.tempData = this.recommendation[randomNumber];
                   this.recTitle = this.tempData["original_title"];
                   this.recId = this.tempData["id"];
                   this.recPosterURL ="http://image.tmdb.org/t/p/w342" + this.tempData["poster_path"];
