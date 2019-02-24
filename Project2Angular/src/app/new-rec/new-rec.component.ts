@@ -96,6 +96,9 @@ export class NewRecComponent implements OnInit {
     * &with_genres=123 - with genre #123
     * &year=123 - year #123
     */
+    if (this.releaseYear!=null){
+      this.getAppend = this.getAppend + "&primary_release_year=" + this.releaseYear;
+    }
     if (this.releaseGreater!=null){
       this.getAppend = this.getAppend + "&release_date.gte=" + this.releaseGreater;
     }    
@@ -131,7 +134,9 @@ export class NewRecComponent implements OnInit {
       data => {this.recommendation = data["results"];
                 console.log(data);
                 console.log(this.recommendation);
-                this.tempData = this.recommendation[Math.floor(Math.random() * this.recommendation.length)]
+                let randomNumber = Math.floor(Math.random() * this.recommendation.length)
+                console.log(randomNumber);
+                this.tempData = this.recommendation[randomNumber];
                 if(this.recommendation.includes("original_title")!=true){
                   this.recTitle = this.tempData["original_title"];
                   this.recId = this.tempData["id"];
