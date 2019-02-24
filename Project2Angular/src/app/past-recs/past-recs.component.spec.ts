@@ -1,3 +1,5 @@
+
+/*
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PastRecsComponent } from './past-recs.component';
@@ -23,3 +25,6 @@ describe('PastRecsComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
+*/

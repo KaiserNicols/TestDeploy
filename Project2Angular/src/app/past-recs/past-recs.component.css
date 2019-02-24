@@ -1,5 +1,6 @@
 body {
-    background-image: url("https://www.clipartmax.com/png/middle/137-1370477_clip-art-movie-medium-size-film-strip-border-png.png");
-    background-repeat: no-repeat;
+    background-image: url("../../assets/film-strip-vector.jpg");
+    background-position: center;
     background-attachment: fixed;
+    background-size: cover;
   }

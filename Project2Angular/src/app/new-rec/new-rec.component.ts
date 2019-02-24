@@ -10,7 +10,7 @@ import { NavbarService } from '../navbar.service';
   styleUrls: ['./new-rec.component.css']
 })
 export class NewRecComponent implements OnInit {
-
+  failRecCounter: number =0;
   title = "Get a Recommendation";
   releaseLower: number;
   releaseGreater: number;
@@ -75,6 +75,7 @@ export class NewRecComponent implements OnInit {
   }
   
   getRec(): void{
+    console.log("this.getAppend = " + this.getAppend);
     this.getAppend = "";
     this.badQuery = false;
     console.log(this.releaseLower);
@@ -118,12 +119,12 @@ export class NewRecComponent implements OnInit {
         this.tempData = this.tempData[0];
         console.log(this.tempData);
         this.actorId = this.tempData["id"]
-        }),err => console.log(`Error: ${err}`)
-        ;
+        }),err => console.log(`Error: ${err}`) ;
         console.log(this.actorId);
         this.getAppend = this.getAppend + "&with_cast=" + this.actorId;
         console.log(this.getAppend);
       }
+
     if (this.selectGenre!=null){
       for (let i = 0; i < this.genres.length; i++)
         if (this.selectGenre === this.genres[i].name){
@@ -133,6 +134,7 @@ export class NewRecComponent implements OnInit {
     this.recsService.getReccomendation(this.getAppend).subscribe(
       data => {this.recommendation = data["results"];
                 if(this.recommendation.length > 0){
+                  this.failRecCounter = 0;
                   console.log(data);
                   console.log(this.recommendation);
                   let randomNumber = Math.floor(Math.random() * this.recommendation.length)
@@ -145,9 +147,17 @@ export class NewRecComponent implements OnInit {
                   this.showRec = true;
                   this.badQuery = false;
                 }
-                else{                 
-                  this.showRec = false;
-                  this.badQuery = true;
+                else{    
+                  if (this.failRecCounter < 1){
+                    this.failRecCounter++;
+                    console.log("failCounter incrememnted");
+                    this.getRec();
+                  }  else{
+                    this.showRec = false;
+                    this.badQuery = true;
+                    this.failRecCounter = 0;
+                  }           
+                  
                 }
               }
               ,err => console.log(`Error: ${err}`)
