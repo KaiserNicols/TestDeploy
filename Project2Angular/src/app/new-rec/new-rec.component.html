@@ -37,7 +37,7 @@
             <button class="btn btn-light" type="reset" value="Reset">Reset</button>
         </div>
     </form>
-    <div class="form-group col-md" *ngIf="recIsHidden">
+    <div class="form-group col-md" *ngIf="showRec">
         <h6>Your recommendation is:</h6>
         <h4>{{recTitle}}</h4>
         <img src={{recPosterURL}} alt="Recommended film poster">

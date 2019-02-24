@@ -25,7 +25,7 @@ export class NewRecComponent implements OnInit {
   recTitle: string;
   recPosterURL: string;
   recId: number;
-  recIsHidden: boolean = false;
+  showRec: boolean = false;
   badQuery: boolean = false;
 
   public actor: actors;
@@ -132,7 +132,7 @@ export class NewRecComponent implements OnInit {
     console.log(this.getAppend);
     this.recsService.getReccomendation(this.getAppend).subscribe(
       data => {this.recommendation = data["results"];
-                if(this.recommendation.includes("original_title")!=true){
+                if(this.recommendation.length === 0){
                   console.log(data);
                   console.log(this.recommendation);
                   let randomNumber = Math.floor(Math.random() * this.recommendation.length)
@@ -142,10 +142,10 @@ export class NewRecComponent implements OnInit {
                   this.recId = this.tempData["id"];
                   this.recPosterURL ="http://image.tmdb.org/t/p/w342" + this.tempData["poster_path"];
                   console.log(this.recPosterURL);
-                  this.recIsHidden = true;
+                  this.showRec = true;
                 }
                 else{                 
-                  this.recIsHidden = false;
+                  this.showRec = false;
                   this.badQuery = true;
                 }
               }
