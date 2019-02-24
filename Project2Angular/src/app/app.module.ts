@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 //import { PastRecsComponent } from './past-recs/past-recs.component';
 import { NewRecComponent } from './new-rec/new-rec.component';
-import { ProfileComponent } from './profile/profile.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -25,7 +24,6 @@ import { NavbarService } from './navbar.service';
     AppComponent,
   //  PastRecsComponent,
     NewRecComponent,
-    ProfileComponent,
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
