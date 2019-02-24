@@ -55,7 +55,7 @@ export class NewRecComponent implements OnInit {
     this.recsService.submitFeedback(this.submitResponse).subscribe(
       data => {
         console.log(data);
-        if (data!=null) {this.router.navigate(['/past-recs']);} 
+        if (data!=null) {this.router.navigate(['/charts']);} 
       },
       (err: any) => console.log(`Error: $(err)`)
     );
@@ -68,7 +68,7 @@ export class NewRecComponent implements OnInit {
     this.recsService.submitFeedback(this.submitResponse).subscribe(
       data => {
         console.log(data);
-        if (data!=null) {this.router.navigate(['/past-recs']);} 
+        if (data!=null) {this.router.navigate(['/charts']);} 
       },
       (err: any) => console.log(`Error: $(err)`)
     );
@@ -111,7 +111,7 @@ export class NewRecComponent implements OnInit {
       this.getAppend = this.getAppend + "&vote_average.gte=" + this.ratingGreater;
     }
     if (this.ratingLower!=null){
-      this.getAppend = this.getAppend + "&vote_average.gte=" + this.ratingLower;
+      this.getAppend = this.getAppend + "&vote_average.lte=" + this.ratingLower;
     }
     if (this.selectActor!=null){
       this.recsService.getActor(this.selectActor).subscribe(
