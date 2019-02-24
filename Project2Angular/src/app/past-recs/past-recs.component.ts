@@ -1,3 +1,4 @@
+/*
 import { Component, OnInit } from '@angular/core';
 import { User, UserService } from '../user.service';
 import {Router} from '@angular/router';
@@ -37,7 +38,7 @@ export class PastRecsComponent implements OnInit {
 
   
 
-  getMovieIds(userRecommendations) {
+getMovieIds(userRecommendations) {
     for (let i=0; i<this.userRecommendations.length; i++) {
       this.movieIds.push(this.userRecommendations[i].movieId);
     }
@@ -52,6 +53,9 @@ export class PastRecsComponent implements OnInit {
   }
   
   
+
+
+  
   
   
   title = "View Recommendations";
@@ -65,3 +69,5 @@ export class PastRecsComponent implements OnInit {
   this.getRecommendations();}
 
 }
+
+*/

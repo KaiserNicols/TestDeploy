@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit{
       response => {
         // console.log(this.username, this.password);
         // console.log(response);
-        if (response!=null) {this.router.navigate(['/past-recs']);} 
+        if (response!=null) {this.router.navigate(['/new-rec']);} 
         else {this.show();}
       },
       (err: any) => console.log(`Error: $(err)`)

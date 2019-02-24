@@ -73,9 +73,12 @@ public class RecommendationServiceImpl implements RecommendationService{
 					LocalDateTime now = LocalDateTime.now();
 					String nowString = now.toString();
 					logPlayer = getUser(newRec.getUsername());
-					
+					System.out.println("newREc username:" + newRec.getUsername());
+					System.out.println(logPlayer);
+					System.out.println(newRec);
 					newRec.setId(logPlayer.getId());
 					newRec.setDate(nowString);
+					System.out.println(newRec);
 					return insertRecommendation(newRec);
 				}catch (JsonParseException e) {
 					// TODO Auto-generated catch block
