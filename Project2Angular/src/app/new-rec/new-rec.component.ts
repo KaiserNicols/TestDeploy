@@ -110,7 +110,7 @@ export class NewRecComponent implements OnInit {
       this.getAppend = this.getAppend + "&vote_average.gte=" + this.ratingGreater;
     }
     if (this.ratingLower!=null){
-      this.getAppend = this.getAppend + "&vote_average.gte=" + this.ratingLower;
+      this.getAppend = this.getAppend + "&vote_average.lte=" + this.ratingLower;
     }
     if (this.selectActor!=null){
       this.recsService.getActor(this.selectActor).subscribe(
