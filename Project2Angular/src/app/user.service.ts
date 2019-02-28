@@ -18,7 +18,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
   // private baseUrl: string = 'http://localhost:8080/Project2/rest/';
   //ec2-34-207-219-18
-  private baseUrl: string = 'http://34.207.219.18:8080/Project2/rest/'
+  private baseUrl: string = 'http://54.227.28.142:8080/Project2/rest/'
 currentUser: UserAttempt;
 
   loginUser(userAttempt: UserAttempt): Observable<UserAttempt> {
