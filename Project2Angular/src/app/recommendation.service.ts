@@ -13,7 +13,7 @@ const httpOptions = {
 })
 export class RecommendationService {
 
- private baseUrl: string = 'http://54.145.242.129:8080/Project2/rest/rec/'
+ private baseUrl: string = 'http://34.207.219.18:8080/Project2/rest/rec/'
  //private baseUrl: string = 'http://localhost:8080/Project2/rest/rec/'
   private getRecommendationsURL: string = 'all';  // URL to get all recommendations for a single user
   private getAllRecommendationsURL: string = 'entirelist';  // URL to get all recommendations
