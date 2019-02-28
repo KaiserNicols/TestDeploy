@@ -44,9 +44,9 @@ export class ChartsComponent implements OnInit {
     this.recommendationService.getRecommendations(this.userService.getCurrentUser())
         .subscribe(recommendations => 
           {
-          console.log("JASON --- currentUser is...");
-          console.log(this.userService.getCurrentUser());
-          console.log(recommendations);
+          //("JASON --- currentUser is...");
+          //console.log(this.userService.getCurrentUser());
+          //console.log(recommendations);
           this.personalRecommendations = recommendations;
           console.log(this.personalRecommendations)
           this.setPersonalChartData();
@@ -59,8 +59,8 @@ export class ChartsComponent implements OnInit {
     this.recommendationService.getAllRecommendations()
         .subscribe(recommendations => 
           {
-          console.log("JASON --- currentUser is...");
-          console.log(this.userService.getCurrentUser());
+          //console.log("JASON --- currentUser is...");
+          //console.log(this.userService.getCurrentUser());
           this.groupRecommendations = recommendations
           this.setGroupChartData();
           }

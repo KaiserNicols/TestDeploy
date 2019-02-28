@@ -20,7 +20,7 @@ export class RecsService {
     //https://api.themoviedb.org/3/search/person?api_key=78e263a07ddcb03810133fc82756418f&query=Brad%20Pitt
     for (let i=0; i < actor.length; i++){
       actor = actor.replace(" ","%20");
-      console.log(actor);
+      //console.log(actor);
     }
     return this.http.get<any[]>("https://api.themoviedb.org/3/search/person?api_key=78e263a07ddcb03810133fc82756418f&query="+ actor +"&page=1&include_adult=false");
   }
