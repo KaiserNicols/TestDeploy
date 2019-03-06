@@ -38,7 +38,8 @@ public class RecommendationDAOImpl implements RecommendationDAO {
 				if (ps.executeUpdate() != 1) {
 					throw new SQLException();
 				}
-				System.out.println(getRecommendation(recommendation.getUserId(), recommendation.getMovieId(), recommendation.getDate()));
+				//System.out.println(getRecommendation(recommendation.getUserId(), recommendation.getMovieId(), recommendation.getDate()));
+				//connection.close();
 				return getRecommendation(recommendation.getUserId(), recommendation.getMovieId(), recommendation.getDate());
 			}
 		} catch (SQLException e) {
@@ -60,6 +61,7 @@ public class RecommendationDAOImpl implements RecommendationDAO {
 				if (ps.executeUpdate() != 1) {
 					throw new SQLException();
 				}
+				//connection.close();
 				return recommendation;	
 			}
 		} catch (SQLException e) {
@@ -75,6 +77,7 @@ public class RecommendationDAOImpl implements RecommendationDAO {
 				if (ps.executeUpdate() != 1) {
 					throw new SQLException();
 				}
+				//connection.close();
 				return recommendation;
 			}
 		} catch (SQLException e) {
@@ -91,13 +94,15 @@ public class RecommendationDAOImpl implements RecommendationDAO {
 				ps.setInt(1, recommendationId);
 				try (ResultSet rs = ps.executeQuery()) {
 					if (rs.next()) {
-						return new Recommendation(
+						Recommendation newRec = new Recommendation(
 								rs.getInt("R_ID"),
 								rs.getInt("U_ID"),
 								rs.getInt("M_ID"),
 								rs.getBoolean("R_HELPFUL"),
 								rs.getString("R_DATE")
 								);
+						//connection.close();
+						return newRec;
 					}	
 				}	
 			}
@@ -115,13 +120,15 @@ public class RecommendationDAOImpl implements RecommendationDAO {
 				ps.setString(3, date);
 				try (ResultSet rs = ps.executeQuery()) {
 					if (rs.next()) {
-						return new Recommendation(
+						Recommendation rec = new Recommendation(
 								rs.getInt("R_ID"),
 								rs.getInt("U_ID"),
 								rs.getInt("M_ID"),
 								rs.getBoolean("R_HELPFUL"),
 								rs.getString("R_DATE")
 								);
+						//connection.close();
+						return rec;
 					}	
 				}	
 			}
@@ -146,6 +153,7 @@ public class RecommendationDAOImpl implements RecommendationDAO {
 								rs.getString("R_DATE")
 								));
 					}
+					//connection.close();
 					return recommendation;
 				}
 			}
@@ -170,6 +178,7 @@ public class RecommendationDAOImpl implements RecommendationDAO {
 								rs.getString("R_DATE")
 								));
 					}
+					//connection.close();
 					return recommendation;
 				}
 			}

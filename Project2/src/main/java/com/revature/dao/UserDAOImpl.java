@@ -50,6 +50,7 @@ public class UserDAOImpl implements UserDAO {
 					throw new SQLException();
 				}
 				//return getUser(user.getUsername()); 
+				//connection.close();
 				return true;// to return the triggered id
 			}
 		} catch (SQLException e) {
@@ -104,8 +105,10 @@ public class UserDAOImpl implements UserDAO {
 				ps.setInt(1, userId);
 				try (ResultSet rs = ps.executeQuery()) {
 					if (rs.next()) {
-						return new User(rs.getInt("U_ID"), rs.getString("U_USERNAME"), rs.getString("U_PASSWORD"),
+						User currentUser =  new User(rs.getInt("U_ID"), rs.getString("U_USERNAME"), rs.getString("U_PASSWORD"),
 								rs.getString("U_EMAIL"), rs.getString("U_FIRSTNAME"), rs.getString("U_LASTNAME"));
+						//connection.close();
+						return currentUser;
 					}
 				}
 			}
@@ -122,8 +125,10 @@ public class UserDAOImpl implements UserDAO {
 				ps.setString(1, username);
 				try (ResultSet rs = ps.executeQuery()) {
 					if (rs.next()) {
-						return new User(rs.getInt("U_ID"), rs.getString("U_USERNAME"), rs.getString("U_PASSWORD"),
+						User currentUser = new User(rs.getInt("U_ID"), rs.getString("U_USERNAME"), rs.getString("U_PASSWORD"),
 								rs.getString("U_EMAIL"), rs.getString("U_FIRSTNAME"), rs.getString("U_LASTNAME"));
+						//connection.close();
+						return currentUser;
 					}
 				}
 			}
@@ -145,6 +150,7 @@ public class UserDAOImpl implements UserDAO {
 						users.add(new User(rs.getInt("U_ID"), rs.getString("U_USERNAME"), rs.getString("U_PASSWORD"),
 								rs.getString("U_EMAIL"), rs.getString("U_FIRSTNAME"), rs.getString("U_LASTNAME")));
 					}
+					//connection.close();
 					return users;
 				}
 			}
@@ -241,7 +247,9 @@ public class UserDAOImpl implements UserDAO {
 				cs.setString(2, password);
 				ResultSet rs = cs.executeQuery();
 				if (rs.next()) {
-					return rs.getString(1);
+					String hashedpassword = rs.getString(1);
+					//connection.close();
+					return hashedpassword;
 				}
 			}
 		} catch (SQLException e) {
@@ -266,6 +274,7 @@ public class UserDAOImpl implements UserDAO {
 					user = new User(rs.getInt("U_ID"), rs.getString("U_USERNAME"), rs.getString("U_PASSWORD"),
 							rs.getString("U_EMAIL"), rs.getString("U_FIRSTNAME"), rs.getString("U_LASTNAME"));
 				}
+				//connection.close();
 			}
 		} catch (SQLException e) {
 			logger.error(e.getMessage());
